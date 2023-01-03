@@ -1,12 +1,9 @@
 
 <?php
-<<<<<<< HEAD
 //Conexion a la base de datos
 include 'coneccionbd.php';
 
 //Obtenemos los datos del formulario
-=======
->>>>>>> c3bd07f625807886cdfecb9cc57f4fb9a47bec0b
 if ($_POST) {
     $nombres = $_POST['nombres'];
     $apellidos = $_POST['apellidos'];
@@ -14,7 +11,6 @@ if ($_POST) {
     $telefono = $_POST['telefono'];
     $contrasenia = $_POST['contrasenia'];
     $direccion = $_POST['direccion'];
-<<<<<<< HEAD
     $contrasenia2 = $_POST['contrasenia2'];
 }
 //Verificamos que las contraseñas coincidan
@@ -70,14 +66,3 @@ mysqli_close($conexion);
 header("Location:loginCliente.php");
 die();
 ?>
-=======
-
-    echo "Nombres: $nombres <br>";
-    echo "Apellidos: $apellidos <br>";
-    echo "Correo: $email <br>";
-    echo "Telefono: $telefono <br>";
-    echo "Contraseña: $contrasenia <br>";
-    echo "Direccion: $direccion <br>";
-}
-?>
->>>>>>> c3bd07f625807886cdfecb9cc57f4fb9a47bec0b
