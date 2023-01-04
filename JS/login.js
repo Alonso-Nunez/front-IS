@@ -15,8 +15,8 @@ formClienteReg.addEventListener('submit', function(e){
     e.preventDefault();
     console.log("click")
 
-   /* var datos =  new FormData(formClienteReg);
-    console.log(datos.get('nombre'))
+    var datos =  new FormData(formClienteReg);
+    /*console.log(datos.get('nombre'))
     console.log(datos.get('direccion'))
     console.log(datos.get('telefono'))*/
 
@@ -52,7 +52,7 @@ formClienteReg.addEventListener('submit', function(e){
 formNegocioReg.addEventListener('submit', function(e){
     e.preventDefault();
     console.log("click")
-
+    var datos =  new FormData(formNegocioReg);
     fetch('http://127.0.0.1:8000/api/negocio', {
         method: 'POST',
         headers: {
