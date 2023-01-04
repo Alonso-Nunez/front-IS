@@ -41,19 +41,19 @@
                     <a href="catalogoCliente.html" class="btn btn-success"><B>Entrar</B></a>
                 </form>
                 <!--Formulario registrarse-->
-                <form action="" method="post" class="formulario_Registrarse">
+                 <form action="" id="formclienteregist" method="post" class="formulario_Registrarse">
                     <BR><BR><BR><h2>Registro de Cliente</h2>
                     
-                    <input type="text" name="nombre" placeholder="Nombre(s)" maxlength="30" id="nombre" data-validetta="required,maxLength[30]">
+                    <input type="text" name="nombre" placeholder="Nombre completo" maxlength="30" id="nombre" data-validetta="required,maxLength[30]">
 
-                    <input type="text" name="apellidos" placeholder="Apellidos" maxlength="30" id="apellido_pa" data-validetta="required,maxLength[60]">
+                    <input type="text" name="direccion" placeholder="Dirección" maxlength="30" id="apellido_pa" data-validetta="required,maxLength[60]">
 
                     <input type="text" name="telefono" placeholder="Teléfono a 10 dígitos" maxlength="10" data-validetta="required,maxLength[10],number,minLength[10]">
 
-                    <input type="email" name="email" placeholder="example@example.com" maxlength="30" data-validetta="required,maxLength[30],email">
+                    <input type="email" name="correo" placeholder="example@example.com" maxlength="30" data-validetta="required,maxLength[30],email">
 
-                    <input type="password" name="contraseña" placeholder="Contraseña" maxlength="30" data-validetta="required,maxLength[30]">
-                    <button><B>Registrarse</B></button>    
+                    <input type="password" name="password" placeholder="Contraseña" maxlength="30" data-validetta="required,maxLength[30]">
+                    <button type="submit"><B>Registrarse</B></button>    
                 </form>
 
             </div>
