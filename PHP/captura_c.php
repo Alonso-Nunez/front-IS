@@ -51,18 +51,20 @@ if ($result) {
     echo '
         <script>
             alert("Registro exitoso");
+            window.location = "loginCliente.php";
         </script>
         ';
 } else {
     echo '
         <script>
             alert("Error al registrar");
+            window.location = "loginCliente.php";
         </script>
         ';
 }
 //Cerramos la conexion
 mysqli_close($conexion);
 //Redireccionamos a la pagina de inicio
-header("Location:loginCliente.php");
+//header("Location:loginCliente.php");
 die();
 ?>
