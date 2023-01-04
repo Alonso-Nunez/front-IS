@@ -9,6 +9,37 @@ var formulario__Registrarse = document.querySelector (".formulario_Registrarse")
 var caja__fondoLogin = document.querySelector (".caja_fondoLogin");
 var caja__fondoRegistro = document.querySelector (".caja_fondoRegistro");
 var formClienteReg = document.getElementById("formclienteregist");
+var formClienteLogin = document.getElementById("formclientelogin");
+
+formClienteLogin.addEventListener('submit', function(e){
+    e.preventDefault();
+    console.log("click")
+
+    var datos =  new FormData(formClienteLogin);
+    fetch('http://127.0.0.1:8000/api/login/cliente', {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            "correo": datos.get('correo'),
+            "password": datos.get('password')})
+    })
+    .then(response => response.json())
+    .then((response) => {
+        console.log(response)
+        console.log(response.data)
+        if(response.success){
+            //window.alert(response.messages[0]);
+            window.location.href = 'catalogoCliente.html';
+        }
+        else{
+            window.alert(response.messages[0]);
+            window.location.href = 'loginCliente.html';
+        }
+    })
+})
 
 formClienteReg.addEventListener('submit', function(e){
     e.preventDefault();

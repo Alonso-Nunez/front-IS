@@ -9,6 +9,36 @@ var formulario__Registrarse = document.querySelector (".formulario_Registrarse")
 var caja__fondoLogin = document.querySelector (".caja_fondoLogin");
 var caja__fondoRegistro = document.querySelector (".caja_fondoRegistro");
 var formNegocioReg = document.getElementById("formnegocioregist");
+var formNegocioLogin = document.getElementById("formnegociologin");
+console.log(formNegocioLogin);
+formNegocioLogin.addEventListener('submit', function(e){
+    e.preventDefault();
+    console.log("click")
+    var datos =  new FormData(formNegocioLogin);
+    fetch('http:///127.0.0.1:8000/api/login/negocio', {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            "correo": datos.get('correo'),
+            "password": datos.get('password')})
+    })
+    .then(response => response.json())
+    .then((response) => {
+        console.log(response)
+        console.log(response.data)
+        if(response.success){
+            window.location.href = 'catalogoNegocio.html';
+        }
+        else{
+            window.alert(response.messages[0]);
+            window.location.href = 'loginNegocio.html';
+        }
+    })
+
+})
 
 
 formNegocioReg.addEventListener('submit', function(e){
