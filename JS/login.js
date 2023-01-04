@@ -9,6 +9,7 @@ var formulario__Registrarse = document.querySelector (".formulario_Registrarse")
 var caja__fondoLogin = document.querySelector (".caja_fondoLogin");
 var caja__fondoRegistro = document.querySelector (".caja_fondoRegistro");
 var formClienteReg = document.getElementById("formclienteregist");
+var formNegocioReg = document.getElementById("formnegocioregist");
 
 formClienteReg.addEventListener('submit', function(e){
     e.preventDefault();
