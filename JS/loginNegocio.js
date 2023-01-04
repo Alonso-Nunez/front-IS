@@ -41,7 +41,7 @@ formNegocioReg.addEventListener('submit', function(e){
             }
         })
         .finally(() => {
-            windows.location.href = 'loginNegocio.html';
+            window.location.href = 'loginNegocio.html';
         })
 
 })
