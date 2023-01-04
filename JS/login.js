@@ -14,10 +14,10 @@ formClienteReg.addEventListener('submit', function(e){
     e.preventDefault();
     console.log("click")
 
-    var datos =  new FormData(formClienteReg);
+   /* var datos =  new FormData(formClienteReg);
     console.log(datos.get('nombre'))
     console.log(datos.get('direccion'))
-    console.log(datos.get('telefono'))
+    console.log(datos.get('telefono'))*/
 
     fetch('http://127.0.0.1:8000/api/cliente', {
         method: 'POST',
@@ -46,6 +46,41 @@ formClienteReg.addEventListener('submit', function(e){
     .finally(() => {
         window.location.href = 'loginCliente.html';
     })
+})
+
+formNegocioReg.addEventListener('submit', function(e){
+    e.preventDefault();
+    console.log("click")
+
+    fetch('http://127.0.0.1:8000/api/negocio', {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+             "nombre": datos.get('nombre'),
+             "direccion": datos.get('direccion'),
+             "telefono": datos.get('telefono'),
+             "correo": datos.get('correo'),
+             "horario": datos.get('horario'),
+             "password": datos.get('password')})
+        })
+        .then(response => response.json())
+        .then((response) => {
+            console.log(response)
+            console.log(response.data)
+            if (response.success) {
+                window.alert(response.messages[0]);
+            }
+            else {
+                window.alert(response.messages[0]);
+            }
+        })
+        .finally(() => {
+            windows.location.href = 'loginNegocio.html';
+        })
+
 })
 
 function anchoPagina(){

@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<title>Inicio Negocio</title>
-<meta name='viewport' content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no'/>
-<meta name="description" content="">
-<meta name="keywords" content="">
-<link href="../css/login.css" rel="stylesheet">
-<link rel="icon" type="image/x-icon" href="../IMG/logo.png">
-<script type="text/javascript" src="../javaScript/encabezadoYPiePagina.js"></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Inicio Negocio</title>
+    <meta name='viewport'
+        content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no' />
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <link href="../css/login.css" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="../IMG/logo.png">
+    <script type="text/javascript" src="../javaScript/encabezadoYPiePagina.js"></script>
 </head>
+
 <body onload="hF()">
     <div id="header" class="general">
     </div>
-    
+
     <main>
 
         <div class="contedenor_todo">
@@ -40,23 +43,31 @@
                     <button>Entrar</button>
                 </form>
                 <!--Formulario registrarse-->
-                <form action="" method="post" class="formulario_Registrarse">
-                    <BR><BR><BR><h2>Registro de Negocio</h2>
-                    
-                    <input type="text" name="nombre" placeholder="Nombre" maxlength="45" id="nombre" data-validetta="required,maxLength[45]">
+                <form action="" method="post" id="formnegocioregist" class="formulario_Registrarse">
+                    <BR><BR><BR>
+                    <h2>Registro de Negocio</h2>
 
-                    <input type="text" name="telefono" placeholder="Teléfono a 10 dígitos" maxlength="10" data-validetta="required,maxLength[10],number,minLength[10]">
+                    <input type="text" name="nombre" placeholder="Nombre" maxlength="45" id="nombre"
+                        data-validetta="required,maxLength[45]">
 
-                    <input type="text" name="ubicacion" placeholder="Ubicación" maxlength="10" data-validetta="required,maxLength[50]">
-                      
-                    <input type="text" name="horario" placeholder="Horario" maxlength="10" data-validetta="required,maxLength[50]">    
+                    <input type="text" name="telefono" placeholder="Teléfono a 10 dígitos" maxlength="10"
+                        data-validetta="required,maxLength[10],number,minLength[10]">
 
-                    <input type="email" name="email" placeholder="example@example.com" maxlength="45" data-validetta="required,maxLength[45],email">
+                    <input type="text" name="ubicacion" placeholder="Ubicación" maxlength="10"
+                        data-validetta="required,maxLength[50]">
 
-                    <input type="password" name="contraseña" placeholder="Contraseña" maxlength="30" data-validetta="required,maxLength[30]">
-                                                                                                                                            
-                    <input type="password" name="contraseña" placeholder="Confirmar contraseña" maxlength="30" data-validetta="required,maxLength[30]">                                                                                                                      
-                    <button>Registrarse</button>    
+                    <input type="text" name="horario" placeholder="Horario" maxlength="10"
+                        data-validetta="required,maxLength[50]">
+
+                    <input type="email" name="email" placeholder="example@example.com" maxlength="45"
+                        data-validetta="required,maxLength[45],email">
+
+                    <input type="password" name="contraseña" placeholder="Contraseña" maxlength="30"
+                        data-validetta="required,maxLength[30]">
+
+                    <input type="password" name="contraseña" placeholder="Confirmar contraseña" maxlength="30"
+                        data-validetta="required,maxLength[30]">
+                    <button type="submit"><B>Registrarse</B></button>
                 </form>
 
             </div>
@@ -64,4 +75,5 @@
     </main>
     <script src="../JS/login.js"></script>
 </body>
+
 </html>
