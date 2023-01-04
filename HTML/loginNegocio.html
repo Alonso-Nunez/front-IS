@@ -47,26 +47,26 @@
                     <BR><BR><BR>
                     <h2>Registro de Negocio</h2>
 
-                    <input type="text" name="nombre" placeholder="Nombre" maxlength="45" id="nombre"
-                        data-validetta="required,maxLength[45]">
+                    <input type="text" name="nombre" placeholder="Nombre" maxlength="100" id="nombre"
+                        data-validetta="required,maxLength[100]">
 
                     <input type="text" name="telefono" placeholder="Teléfono a 10 dígitos" maxlength="10"
                         data-validetta="required,maxLength[10],number,minLength[10]">
 
-                    <input type="text" name="ubicacion" placeholder="Ubicación" maxlength="10"
+                    <input type="text" name="ubicacion" placeholder="Ubicación" maxlength="300"
+                        data-validetta="required,maxLength[300]">
+
+                    <input type="text" name="horario" placeholder="Horario" maxlength="50"
                         data-validetta="required,maxLength[50]">
 
-                    <input type="text" name="horario" placeholder="Horario" maxlength="10"
-                        data-validetta="required,maxLength[50]">
+                    <input type="email" name="email" placeholder="example@example.com" maxlength="100"
+                        data-validetta="required,maxLength[100],email">
 
-                    <input type="email" name="email" placeholder="example@example.com" maxlength="45"
-                        data-validetta="required,maxLength[45],email">
+                    <input type="password" name="contraseña" placeholder="Contraseña" maxlength="20"
+                        data-validetta="required,maxLength[20]">
 
-                    <input type="password" name="contraseña" placeholder="Contraseña" maxlength="30"
-                        data-validetta="required,maxLength[30]">
-
-                    <input type="password" name="contraseña" placeholder="Confirmar contraseña" maxlength="30"
-                        data-validetta="required,maxLength[30]">
+                    <input type="password" name="contraseña2" placeholder="Confirmar contraseña" maxlength="20"
+                        data-validetta="required,maxLength[20]">
                     <button type="submit"><B>Registrarse</B></button>
                 </form>
 
