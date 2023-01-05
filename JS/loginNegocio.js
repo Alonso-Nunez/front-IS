@@ -20,7 +20,6 @@ if (verToken != null && tiposesion == "negocio") {
     window.location.href = 'catalogoNegocio.html';
 }
 
-}
 
 //Funcion para conectar con la API para el login
 formNegocioLogin.addEventListener('submit', function(e){
