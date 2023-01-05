@@ -13,7 +13,12 @@ var formClienteReg = document.getElementById("formclienteregist");
 var formClienteLogin = document.getElementById("formclientelogin");
 
 var verToken = window.sessionStorage.getItem('access_token');
-if (verToken != null) {
+var tiposesion = window.sessionStorage.getItem('tipo_sesion');
+
+if (verToken != null && tiposesion == "cliente") {
+    window.location.href = 'catalogoCliente.html';
+}else if (verToken != null && tiposesion == "negocio") {
+    window.alert("Debes cerrar la sesión del negocio para acceder como cliente");
     window.location.href = 'catalogoCliente.html';
 }
 

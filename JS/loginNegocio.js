@@ -12,8 +12,14 @@ var formNegocioReg = document.getElementById("formnegocioregist");
 var formNegocioLogin = document.getElementById("formnegociologin");
 
 var verToken = window.sessionStorage.getItem('access_token');
-if (verToken != null) {
+var tiposesion = window.sessionStorage.getItem('tipo_sesion');
+if (verToken != null && tiposesion == "negocio") {
     window.location.href = 'catalogoNegocio.html';
+}else if(verToken != null && tiposesion == "cliente"){
+    window.alert("Debes cerrar la sesión del cliente para acceder como negocio");
+    window.location.href = 'catalogoNegocio.html';
+}
+
 }
 
 //Funcion para conectar con la API para el login
