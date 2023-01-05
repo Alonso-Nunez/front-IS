@@ -40,7 +40,7 @@ body {
 }
 
 .menu_items li a{
-    padding: 7px 40px;
+    padding: 7px 25px;
     text-decoration: none;
     font-size: 18px;
     display: block;
@@ -66,7 +66,7 @@ ul.show{
 
 .menu_items .fa{
     margin-top: 20px;
-    font-size: 40px;
+    font-size: 30px;
 }
 
 @media screen and (max-width: 952px){
