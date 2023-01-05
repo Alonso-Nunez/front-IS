@@ -10,7 +10,8 @@ var caja__fondoLogin = document.querySelector (".caja_fondoLogin");
 var caja__fondoRegistro = document.querySelector (".caja_fondoRegistro");
 var formNegocioReg = document.getElementById("formnegocioregist");
 var formNegocioLogin = document.getElementById("formnegociologin");
-console.log(formNegocioLogin);
+
+//Funcion para conectar con la API para el login
 formNegocioLogin.addEventListener('submit', function(e){
     e.preventDefault();
     console.log("click")
@@ -40,7 +41,7 @@ formNegocioLogin.addEventListener('submit', function(e){
 
 })
 
-
+//Funcion para conectar con la API para el registro
 formNegocioReg.addEventListener('submit', function(e){
     e.preventDefault();
     console.log("click")

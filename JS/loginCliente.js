@@ -11,6 +11,7 @@ var caja__fondoRegistro = document.querySelector (".caja_fondoRegistro");
 var formClienteReg = document.getElementById("formclienteregist");
 var formClienteLogin = document.getElementById("formclientelogin");
 
+//Funcion para conectar con la API para el login
 formClienteLogin.addEventListener('submit', function(e){
     e.preventDefault();
     console.log("click")
@@ -41,6 +42,7 @@ formClienteLogin.addEventListener('submit', function(e){
     })
 })
 
+//Funcion para conectar con la API para el registro
 formClienteReg.addEventListener('submit', function(e){
     e.preventDefault();
     console.log("click")
