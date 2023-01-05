@@ -1,3 +1,4 @@
+
 document.getElementById("btn_registrarse").addEventListener("click", register);
 document.getElementById("btn_iniciarSesion").addEventListener("click", iniciarS);
 window.addEventListener("resize", anchoPagina)
@@ -10,6 +11,11 @@ var caja__fondoLogin = document.querySelector (".caja_fondoLogin");
 var caja__fondoRegistro = document.querySelector (".caja_fondoRegistro");
 var formClienteReg = document.getElementById("formclienteregist");
 var formClienteLogin = document.getElementById("formclientelogin");
+
+var verToken = window.sessionStorage.getItem('access_token');
+if (verToken != null) {
+    window.location.href = 'catalogoCliente.html';
+}
 
 //Funcion para conectar con la API para el login
 formClienteLogin.addEventListener('submit', function(e){
@@ -33,6 +39,10 @@ formClienteLogin.addEventListener('submit', function(e){
         console.log(response.data)
         if(response.success){
             //window.alert(response.messages[0]);
+            var token = response.data.access_token;
+            //console.log(response.data.access_token);
+            window.sessionStorage.setItem('access_token', token);
+            //console.log(window.localStorage.getItem('access_token'));
             window.location.href = 'catalogoCliente.html';
         }
         else{

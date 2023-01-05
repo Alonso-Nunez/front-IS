@@ -9,3 +9,5 @@ addEventListener('DOMContentLoaded', () =>{
 }
 
 )
+
+console.log(window.sessionStorage.getItem('access_token'));
