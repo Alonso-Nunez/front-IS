@@ -1,38 +1,42 @@
 <!DOCTYPE html>
-<html lang ="en"> 
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-    <link rel ="stylesheet" href="../CSS/estilosBarra1.css">
+    <link rel="stylesheet" href="../CSS/estilosBarra1.css">
     <link rel="icon" type="image/x-icon" href="../IMG/logo.png">
-    <script src="../JS/Barra.js" defer> </script>
+    <script src="../JS/barraNegocio.js" defer> </script>
 </head>
+
 <body>
     <nav class="menu">
         <label class="logo">Green Food</label>
         <ul class="menu_items">
             <!--Editar perfil -->
-            <li><a href="datosNegocio.html" ><i class="fa fa-user" aria-hidden="true"></i></a></li>
+            <li><a href="datosNegocio.html"><i class="fa fa-user" aria-hidden="true"></i></a></li>
             <!--Carrito de compras-->
             <li><a href="ofertaNegocio.html"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a></li>
             <!--Salir-->
-            <li><a href="loginNegocio.html" ><i class="fa fa-sign-out" aria-hidden="true"></i></a></li>
+            <li><a href="" id="logout"><i class="fa fa-sign-out" aria-hidden="true"></i></a></li>
         </ul>
         <sapn class="btn_menu">
             <i class="fa fa-bars"></i>
         </sapn>
     </nav>
-<!--Inicio del catalogo -->
- <main>
+    <!--Inicio del catalogo -->
+    <main>
         <div class="pricing-header px-3 py-3 pt-md-4 pb-md-4 my-4 mx-auto text-center">
             <h1 class="display-4 mt-4">Lista de Productos</h1>
             <p class="lead">Edite los productos que está vendiendo</p>
         </div>
 
-        <div class="container" id="lista-productos">  
+        <div class="container" id="lista-productos">
             <div class="card-deck mb-3 text-center">
                 <!--Primer Recuadro -->
                 <div class="card mb-4 shadow-sm">
@@ -93,10 +97,11 @@
                 </div>
             </div>
         </div>
-    </div>
+        </div>
 
-    </div>
+        </div>
     </main>
-<!--Fin del catalogo -->
-    </body>
+    <!--Fin del catalogo -->
+</body>
+
 </html>

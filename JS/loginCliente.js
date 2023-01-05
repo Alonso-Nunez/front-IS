@@ -40,7 +40,9 @@ formClienteLogin.addEventListener('submit', function(e){
         if(response.success){
             //window.alert(response.messages[0]);
             var token = response.data.access_token;
+            var tiposesion = "cliente";
             //console.log(response.data.access_token);
+            window.sessionStorage.setItem('tipo_sesion', tiposesion);
             window.sessionStorage.setItem('access_token', token);
             //console.log(window.localStorage.getItem('access_token'));
             window.location.href = 'catalogoCliente.html';

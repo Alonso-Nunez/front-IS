@@ -37,7 +37,9 @@ formNegocioLogin.addEventListener('submit', function(e){
         console.log(response.data)
         if(response.success){
             var token = response.data.access_token;
+            var tiposesion = "negocio";
             window.sessionStorage.setItem('access_token', token);
+            window.sessionStorage.setItem('tipo_sesion', tiposesion);
             window.location.href = 'catalogoNegocio.html';
         }
         else{
