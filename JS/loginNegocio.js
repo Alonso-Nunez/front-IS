@@ -11,6 +11,11 @@ var caja__fondoRegistro = document.querySelector (".caja_fondoRegistro");
 var formNegocioReg = document.getElementById("formnegocioregist");
 var formNegocioLogin = document.getElementById("formnegociologin");
 
+var verToken = window.sessionStorage.getItem('access_token');
+if (verToken != null) {
+    window.location.href = 'catalogoNegocio.html';
+}
+
 //Funcion para conectar con la API para el login
 formNegocioLogin.addEventListener('submit', function(e){
     e.preventDefault();
@@ -31,6 +36,8 @@ formNegocioLogin.addEventListener('submit', function(e){
         console.log(response)
         console.log(response.data)
         if(response.success){
+            var token = response.data.access_token;
+            window.sessionStorage.setItem('access_token', token);
             window.location.href = 'catalogoNegocio.html';
         }
         else{
