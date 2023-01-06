@@ -17,7 +17,7 @@ if (verToken != null && tiposesion == "negocio") {
     window.location.href = 'catalogoNegocio.html';
 }else if(verToken != null && tiposesion == "cliente"){
     window.alert("Debes cerrar la sesión del cliente para acceder como negocio");
-    window.location.href = 'catalogoNegocio.html';
+    window.location.href = 'catalogoCliente.html';
 }
 
 

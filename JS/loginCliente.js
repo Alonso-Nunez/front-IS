@@ -19,7 +19,7 @@ if (verToken != null && tiposesion == "cliente") {
     window.location.href = 'catalogoCliente.html';
 }else if (verToken != null && tiposesion == "negocio") {
     window.alert("Debes cerrar la sesión del negocio para acceder como cliente");
-    window.location.href = 'catalogoCliente.html';
+    window.location.href = 'catalogoNegocio.html';
 }
 
 //Funcion para conectar con la API para el login
