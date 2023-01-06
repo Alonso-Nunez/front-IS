@@ -60,6 +60,11 @@ formNegocioReg.addEventListener('submit', function(e){
     e.preventDefault();
     console.log("click")
     var datos =  new FormData(formNegocioReg);
+
+    if(datos.get('password') != datos.get('password1')){
+        window.alert("Las contraseñas no coinciden");
+    }else{
+
     fetch('http://127.0.0.1:8000/api/negocio', {
         method: 'POST',
         headers: {
@@ -88,7 +93,7 @@ formNegocioReg.addEventListener('submit', function(e){
         .finally(() => {
             window.location.href = 'loginNegocio.html';
         })
-
+    }
 })
 
 function anchoPagina(){

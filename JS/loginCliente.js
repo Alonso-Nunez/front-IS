@@ -65,6 +65,10 @@ formClienteReg.addEventListener('submit', function(e){
     console.log("click")
 
     var datos =  new FormData(formClienteReg);
+
+    if (datos.get('password') != datos.get('password1')){
+        window.alert("Las contraseñas no coinciden");
+    }else{
     /*console.log(datos.get('nombre'))
     console.log(datos.get('direccion'))
     console.log(datos.get('telefono'))*/
@@ -96,6 +100,7 @@ formClienteReg.addEventListener('submit', function(e){
     .finally(() => {
         window.location.href = 'loginCliente.html';
     })
+    }
 })
 
 function anchoPagina(){
