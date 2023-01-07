@@ -29,4 +29,4 @@ logout.addEventListener('click', () => {
     window.location.href = 'inicioSesion.html';
 })
 
-console.log(window.sessionStorage.getItem('access_token'));
+//console.log(window.sessionStorage.getItem('access_token'));
