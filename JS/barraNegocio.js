@@ -5,6 +5,8 @@ var logout = document.getElementById('logout');
 var formDatosNeg = document.getElementById("formularioDatosN");
 var formEditNeg = document.getElementById("formularioEditNeg");
 
+var formAddPublication = document.getElementById("procesar-oferta");
+
 if (formDatosNeg != null) {
 
     fetch('http://127.0.0.1:8000/api/negocio/auth', {
@@ -76,6 +78,36 @@ if (formEditNeg != null) {
                 "correo": datos.get('correo'),
                 "horario": datos.get('horario'),
                 "password": datos.get('password')})
+        })
+        .then(response => response.json())
+        .then((response) => {
+            console.log(response)
+            console.log(response.data)
+            if(response.success){
+                window.alert(response.messages[0]);
+            }
+            else{
+                window.alert(response.messages[0]);
+            }
+        })
+    })
+}
+
+if (formAddPublication != null) {
+    formAddPublication.addEventListener('submit', function(e){
+        e.preventDefault();
+        console.log("click")
+    
+        var datos =  new FormData(formAddPublication);
+        var file = document.getElementById('upload').files[0];
+        console.log(file)
+        datos.append("image", file);
+        fetch('http://127.0.0.1:8000/api/publicacion', {
+            method: 'POST',
+            headers: {
+                'Authorization': 'Bearer '+ verToken
+            },
+            body: datos
         })
         .then(response => response.json())
         .then((response) => {
