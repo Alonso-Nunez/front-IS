@@ -7,9 +7,6 @@ var formEditNeg = document.getElementById("formularioEditNeg");
 
 if (formDatosNeg != null) {
 
-    /*console.log(formDatosNeg)
-    console.log(formDatosNeg.nombre)*/
-
     fetch('http://127.0.0.1:8000/api/negocio/auth', {
         method: 'GET',
         headers: {
@@ -25,7 +22,7 @@ if (formDatosNeg != null) {
         if(response.success){
             formDatosNeg.nombre.value = response.data.nombre;
             formDatosNeg.telefono.value = response.data.telefono;
-            formDatosNeg.dir.value = response.data.direccion;
+            formDatosNeg.direccion.value = response.data.direccion;
             formDatosNeg.horario.value = response.data.horario;
             formDatosNeg.correo.value = response.data.correo;
         }
