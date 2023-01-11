@@ -11,6 +11,8 @@ var formAddPublication = document.getElementById("procesar-oferta");
 //catalogoNegocio.html
 var divListaProdNeg = document.getElementById("lista-productos");
 
+var formEditPublication = document.getElementById("editar-oferta");
+
 if (formDatosNeg != null) {
 
     fetch('http://127.0.0.1:8000/api/negocio/auth', {
@@ -151,7 +153,7 @@ if (divListaProdNeg != null) {
             datos = response.data;
             const host = 'http://127.0.0.1:8000';
             //La siguiente variable cambia el numero de productos por fila
-            var numElem = 3;
+            var numElem = 2;
 
             var div = document.createElement("div");
             div.classList.add('card-deck', 'mb-3', 'text-center');
@@ -171,7 +173,7 @@ if (divListaProdNeg != null) {
                             <li>${datos[index].descripcion}</li>
                             <li>Cantidad Disponible: ${datos[index].disponibilidad} </li>
                         </ul>
-                        <a href="editarOfertaNegocio.html" class="btn btn-success" data-id="1">Editar</a>
+                        <input type="submit" class="btn btn-success" value="Editar" data-id="${datos[index].id}">
                         <input type="submit" class="btn btn-danger" value="Eliminar" data-id="${datos[index].id}">
                     </div>
                 </div>`; 
@@ -184,9 +186,9 @@ if (divListaProdNeg != null) {
                 }
             }
 
-            var elements = document.getElementsByClassName("btn-danger");
-            for (i of elements) {
-                i.addEventListener('click', function() {
+            var btnsDelete = document.getElementsByClassName("btn-danger");
+            for (d of btnsDelete) {
+                d.addEventListener('click', function() {
                     var id = this.getAttribute('data-id');
                     fetch('http://127.0.0.1:8000/api/publicacion/'+id, {
                         method: 'DELETE',
@@ -209,10 +211,73 @@ if (divListaProdNeg != null) {
                     })
                 });
             }
+
+            var btnsEdit = document.getElementsByClassName("btn-success");
+            for (e of btnsEdit) {
+                e.addEventListener('click', function() {
+                    var idP = this.getAttribute('data-id');
+                    window.sessionStorage.setItem('publicacion_id', idP);
+                    window.location.href = 'editarOfertaNegocio.html';
+                })
+            }
         }
         else{
             window.alert(response.messages[0]);
         }
+    })
+}
+
+if (formEditPublication != null) {
+    var idPub = window.sessionStorage.getItem('publicacion_id');
+    //Servicio que devuelve información del negocio
+    fetch('http://127.0.0.1:8000/api/publicacion/'+idPub, {
+        method: 'GET',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer '+ verToken
+        }
+    })
+    .then(response => response.json())
+    .then((response) => {
+        if(response.success){
+            formEditPublication.titulo.value = response.data.titulo;
+            formEditPublication.nombre.value = response.data.nombre;
+            formEditPublication.promocion.value = response.data.promocion;
+            formEditPublication.precio.value = response.data.precio;
+            formEditPublication.cantidad.value = response.data.disponibilidad;
+            formEditPublication.descripcion.value = response.data.descripcion;
+        }
+        else{
+            window.alert(response.messages[0]);
+        }
+    })
+
+    //Servicio que actualiza la información del negocio
+    formEditPublication.addEventListener('submit', function(e){
+        e.preventDefault();
+        console.log("click")
+    
+        var datos =  new FormData(formEditPublication);
+        fetch('http://127.0.0.1:8000/api/publicacion/'+idPub, {
+            method: 'POST',
+            headers: {
+                'Authorization': 'Bearer '+ verToken
+            },
+            body: datos
+        })
+        .then(response => response.json())
+        .then((response) => {
+            console.log(response)
+            console.log(response.data)
+            if(response.success){
+                window.alert(response.messages[0]);
+                window.location.href = 'catalogoNegocio.html';
+            }
+            else{
+                window.alert(response.messages[0]);
+            }
+        })
     })
 }
 
