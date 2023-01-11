@@ -5,7 +5,11 @@ var logout = document.getElementById('logout');
 var formDatosNeg = document.getElementById("formularioDatosN");
 var formEditNeg = document.getElementById("formularioEditNeg");
 
+//ofertaNegocio.html
 var formAddPublication = document.getElementById("procesar-oferta");
+
+//catalogoNegocio.html
+var divListaProdNeg = document.getElementById("lista-productos");
 
 if (formDatosNeg != null) {
 
@@ -93,6 +97,9 @@ if (formEditNeg != null) {
     })
 }
 
+/*ofertaNegocio.html
+Crea las publicaciones en la base de datos
+*/
 if (formAddPublication != null) {
     formAddPublication.addEventListener('submit', function(e){
         e.preventDefault();
@@ -120,6 +127,63 @@ if (formAddPublication != null) {
                 window.alert(response.messages[0]);
             }
         })
+    })
+}
+
+/*catalogoNegocio.html
+*/
+if (divListaProdNeg != null) {
+    var datos = null;
+    fetch('http://127.0.0.1:8000/api/publicaciones', {
+        method: 'GET',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer '+ verToken
+        }
+    })
+    .then(response => response.json())
+    .then((response) => {
+        console.log(response)
+        console.log(response.data)
+        if(response.success){
+            datos = response.data;
+            const host = 'http://127.0.0.1:8000';
+            //La siguiente variable cambia el numero de productos por fila
+            var numElem = 3;
+            var div = document.createElement("div");
+            div.classList.add('card-deck', 'mb-3', 'text-center');
+            divListaProdNeg.appendChild(div);
+            for (let index = 0; index < datos.length; index++) {
+                div.innerHTML += `<div class="card mb-4 shadow-sm">
+                    <div class="card-header">
+                        <h4 class="my-0 font-weight-bold">${datos[index].titulo}</h4>
+                    </div>
+                    <div class="card-body">
+                        <img src="${host + datos[index].pathImage}" class="card-img-top">
+                        <h1 class="card-title pricing-card-title precio"><span class="">${datos[index].precio}</span></h1>
+
+                        <ul class="list-unstyled mt-3 mb-4">
+                            <li></li>
+                            <li>${datos[index].nombre}</li>
+                            <li>${datos[index].descripcion}</li>
+                            <li>Cantidad Disponible: ${datos[index].disponibilidad} </li>
+                        </ul>
+                        <a href="editarOfertaNegocio.html" class="btn btn-success" data-id="1">Editar</a>
+                        <a href="" class="btn btn-danger" data-id="2">Eliminar</a>
+                    </div>
+                </div>`; 
+                if (index != 0 && (index%numElem) == 0) {
+                    console.log(index)
+                    div = document.createElement("div");
+                    div.classList.add('card-deck', 'mb-3', 'text-center');
+                    divListaProdNeg.appendChild(div);
+                }
+            }
+        }
+        else{
+            window.alert(response.messages[0]);
+        }
     })
 }
 
