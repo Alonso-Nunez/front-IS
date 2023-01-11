@@ -103,11 +103,11 @@ Crea las publicaciones en la base de datos
 if (formAddPublication != null) {
     formAddPublication.addEventListener('submit', function(e){
         e.preventDefault();
-        console.log("click")
+        //console.log("click")
     
         var datos =  new FormData(formAddPublication);
         var file = document.getElementById('upload').files[0];
-        console.log(file)
+        //console.log(file)
         datos.append("image", file);
         fetch('http://127.0.0.1:8000/api/publicacion', {
             method: 'POST',
@@ -118,8 +118,8 @@ if (formAddPublication != null) {
         })
         .then(response => response.json())
         .then((response) => {
-            console.log(response)
-            console.log(response.data)
+            //console.log(response)
+            //console.log(response.data)
             if(response.success){
                 window.alert(response.messages[0]);
             }
@@ -131,6 +131,7 @@ if (formAddPublication != null) {
 }
 
 /*catalogoNegocio.html
+Muestra los prodctos creados por el negocio
 */
 if (divListaProdNeg != null) {
     var datos = null;
@@ -144,13 +145,14 @@ if (divListaProdNeg != null) {
     })
     .then(response => response.json())
     .then((response) => {
-        console.log(response)
-        console.log(response.data)
+        //console.log(response)
+        //console.log(response.data)
         if(response.success){
             datos = response.data;
             const host = 'http://127.0.0.1:8000';
             //La siguiente variable cambia el numero de productos por fila
             var numElem = 3;
+
             var div = document.createElement("div");
             div.classList.add('card-deck', 'mb-3', 'text-center');
             divListaProdNeg.appendChild(div);
@@ -170,15 +172,42 @@ if (divListaProdNeg != null) {
                             <li>Cantidad Disponible: ${datos[index].disponibilidad} </li>
                         </ul>
                         <a href="editarOfertaNegocio.html" class="btn btn-success" data-id="1">Editar</a>
-                        <a href="" class="btn btn-danger" data-id="2">Eliminar</a>
+                        <input type="submit" class="btn btn-danger" value="Eliminar" data-id="${datos[index].id}">
                     </div>
                 </div>`; 
+                //Agrega otro div (fila) para los productos
                 if (index != 0 && (index%numElem) == 0) {
-                    console.log(index)
+                    //console.log(index)
                     div = document.createElement("div");
                     div.classList.add('card-deck', 'mb-3', 'text-center');
                     divListaProdNeg.appendChild(div);
                 }
+            }
+
+            var elements = document.getElementsByClassName("btn-danger");
+            for (i of elements) {
+                i.addEventListener('click', function() {
+                    var id = this.getAttribute('data-id');
+                    fetch('http://127.0.0.1:8000/api/publicacion/'+id, {
+                        method: 'DELETE',
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json',
+                            'Authorization': 'Bearer '+ verToken
+                        }
+                    })
+                    .then(response => response.json())
+                    .then((response) => {
+                        //console.log(response)
+                        if(response.success){
+                            window.alert(response.messages[0]);
+                            location.reload();
+                        }
+                        else{
+                            window.alert(response.messages[0]);
+                        }
+                    })
+                });
             }
         }
         else{
