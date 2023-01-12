@@ -40,15 +40,25 @@
     </nav>
     <!--Fin menu-->
 
-    <!--Editar perfil --><Br><br>
+    <!--Editar perfil -->
+    <br><br>
+    <div class="container" id="lista-productos">
     <form id="formularioEditNeg" class="formulario" method="post">
-        <center><label>
-                <h2>Editar Perfil</h2>
-            </label>
 
+                <div class="card mb-4 shadow-sm">
+                <div class="card-header">
+                    <center>
+                    <label>
+                        <h2>E D I T A R &nbsp P E R F I L</h2>
+                    </label>
+                    </center>
+                </div>
+            </div>
+
+       <div class="card-body">
             <label for="nombre">Nombre:</label>
             <input type="text" name="nombre" id="nombre">
-
+            
             <label for="telefono">Teléfono:</label>
             <input type="text" name="telefono" id="telefono">
 
@@ -60,20 +70,14 @@
 
             <label for="correo">Correo:</label>
             <input type="text" name="correo" id="correo">
-
-            <label for="contra">Contraseña:</label>
-            <input type="password" name="password" id="contra">
-
-            <label for="contra2">Nueva Contraseña:</label>
-            <input type="text" name="password2" id="contra2" norequired>
-
-            <label for="contra3">Confirmar Nueva Contraseña:</label>
-            <input type="text" name="password3" id="contra3" norequired>
-            <Br><Br>
-
-            <input type="submit" value="Guardar" class="botonEditarN">
-        </center>
+            <br>
+            <br>
+            <br>
+            <a class="botonGuardar" href="#">Guardar</a>
+            <a class="botonCancelar" href="datosNegocio.html">Cancelar</a>
+        </div>
     </form>
+</div>
 </body>
 
 </html>
