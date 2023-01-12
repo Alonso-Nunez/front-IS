@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=no">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer"
+    />
+    <link rel="icon" type="image/x-icon" href="../img/Logo.png">
+    <link rel="stylesheet" href="../CSS/estilo.css">
+    <title>GREEN FOOD</title>
+</head>
+
+<body>
+    <!-- I N I C I O -->
+    <section id="inicio">
+        <div class="contenido">
+            <header>
+                <div class="contenido-header">
+                    <h1>GREEN FOOD</h1>
+                    <nav id="nav" class="">
+                        <ul id="links">
+                            <li><a href="#inicio" class="seleccionado" onclick="seleccionar(this)">INICIO</a></li>
+                            <li><a href="#sobremi" onclick="seleccionar(this)">SOBRE NOSOTROS</a></li>
+                            <li><a href="#servicios" onclick="seleccionar(this)">OBJETIVOS</a></li>
+                            <li><a href="#portfolio" onclick="seleccionar(this)">PORTFOLIO</a></li>
+                            <li><a href="#contacto" onclick="seleccionar(this)">CONTACTO</a></li>
+                        </ul>
+                    </nav>
+
+                    <!-- Icono del menu responsive -->
+                    <div id="icono-nav" onclick="responsiveMenu()">
+                        <i class="fa-solid fa-bars"></i>
+                    </div>
+
+
+                    <div class="redes">
+                        <a href="inicioSesion.html"><i class="fa-solid fa-right-to-bracket"></i></a>
+                    </div>
+                </div>
+            </header>
+            <div class="presentacion">
+                <br>
+                <p class="bienvenida">Bienvenidos</p>
+                <br>
+                <h2>Somos <span>GREEN FOOD</span>, una experiencia diferente para tu comida</h2>
+                <a href="#sobremi">Conocenos Más</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- S O B R E M I -->
+    <section id="sobremi">
+        <div class="contenedor-foto">
+            <br>
+            <img src="../IMG/Logo.png" alt="">
+        </div>
+        <div class="sobremi">
+            <br>
+            <p class="titulo-seccion">Acerca de Nosotros</p>
+            <h2>Somos <span>GREEN FOOD</span> </h2>
+            <h3>Amigos del medio ambiente y de tu comida</h3>
+            <p>GREEN FOOD es una plataforma web que tiene como finalidad poder brindar un espacio para comercializar 
+                la merma existente de la producción diaria de los pequeños, medianos y grandes comercios que se 
+                llegan a dedicar en la distribución o preparación de alimentos.</p>
+            <p>Esto es debido a que en la actualidad existe un gran desperdicio de alimentos preparados por parte de estos
+                comercios que preparan una gran cantidad de comida que muchas veces no se llega a vender o consumir 
+                y que se tiene que tirar a la basura.</p>
+        </div>
+    </section>
+
+    <!-- O B J E T I V O S -->
+    <section id="servicios">
+        <h3 class="titulo-seccion">O B J E T I V O S</h3>
+        <div class="fila">
+             <!-- primera-->
+            <div class="servicio">
+                <span class="icono"> <i class="fa-solid fa-code"></i></span>
+                <h4>Aplicación Web</h4>
+                <hr>
+                <p>Crear una aplicación web donde se puedan ofertar y promocionar dichos alimentos con la finalidad de que los usuarios que viven en la Gustavo A. Madero los consuman. </p>
+            </div>
+            <!-- segunda-->
+            <div class="servicio">
+                <span class="icono"><i class="fa-solid fa-database"></i></span>
+                <h4>Base de Datos</h4>
+                <hr>
+                <p>Emplear una base de datos donde se puedan guardar los menús del día, a parte de los datos de los usuarios y los restaurantes o fondas registradas.</p>
+            </div>
+            <!-- tercera-->
+            <div class="servicio">
+                <span class="icono"><i class="fa-solid fa-tv"></i></span>
+                <h4>Interfaz Gráfica</h4>
+                <hr>
+                <p>Implementar una interfaz amigable y llamativa para el usuario, para que tenga más preferencia hacia nuestra aplicación.</p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- PORTAFOLIO -->
+    <section id="portfolio">
+        <h3 class="titulo-seccion">Empresas Colaboradoras</h3>
+        <br>
+        <br>
+        <p>En esta sección podemos visualizar que empresas contribuyen con nuestra plataforma para poder tener un menor desperdicio de comida
+            y con ello poder ayudar a la población 
+        </p>
+        <div class="fila">
+            <div class="proyecto">
+                <div class="overlay"></div>
+                <img src="../IMG/pizzaM.png" alt="">
+                <div class="info">
+                    <h4>Pizza Maestra</h4>
+                </div>
+            </div>
+            <div class="proyecto">
+                <div class="overlay"></div>
+                <img src="../IMG/porton.png" alt="">
+                <div class="info">
+                    <h4>El PORTON</h4>
+                </div>
+            </div>
+            <div class="proyecto">
+                <div class="overlay"></div>
+                <img src="../IMG/proyecto3.jpg" alt="">
+                <div class="info">
+                    <h4>Nino Capuchino</h4>
+                    <p>Dirección: Buen Tono esq, Av Necaxa 123, Industrial, 07800 Ciudad de México, CDMX</p>
+                </div>
+            </div>
+        </div>
+        <div class="fila">
+            <div class="proyecto">
+                <div class="overlay"></div>
+                <img src="../IMG/proyecto4.jpg" alt="">
+                <div class="info">
+                    <h4>La Casa de Toño</h4>
+                    <p>Dirección: Av. Guillermo Massieu Helguera 86, La Purísima Ticoman, Gustavo A. Madero, 07320 Ciudad de México, CDMX</p>
+                </div>
+            </div>
+            <div class="proyecto">
+                <div class="overlay"></div>
+                <img src="../IMG/proyecto5.jpg" alt="">
+                <div class="info">
+                    <h4>Restaurante Zenón</h4>
+                    <p>Dirección: Calz de Guadalupe 739 – 2, Aragón La Villa(Aragón), Gustavo A. Madero, 07000 Ciudad de México, CDMX</p>
+                </div>
+            </div>
+            <div class="proyecto">
+                <div class="overlay"></div>
+                <img src="../IMG/proyecto6.jpg" alt="">
+                <div class="info">
+                    <h4>Parrilla Danesa</h4>
+                    <p>Dirección: Matanzas 669, Lindavista, Gustavo A. Madero, 07300 Ciudad de México, CDMXb</p>
+                </div>
+            </div>
+        </div>
+       
+    </section>
+
+    <!-- C O N T A C T O -->
+    <section id="contacto">
+        <h3 class="titulo-seccion">C O N T A C T A N O S</h3><BR>
+        <div class="contenedor-form">
+            <form action="">
+                <div class="fila mitad">
+                    <input type="text" placeholder="Nombre Completo *" class="input-mitad">
+                    <input type="email" placeholder="Dirección de Email" class="input-mitad">
+                </div>
+                <div class="fila">
+                    <input type="text" placeholder="Asunto..." class="input-full">
+                </div>
+                <div class="fila">
+                    <textarea name="" id="" cols="30" rows="10" placeholder="Tu Mensaje..." class="input-full"></textarea>
+                </div>
+                <br><br>
+                <input type="submit" value="Enviar Mensaje" class="btn-enviar">
+            </form>
+            
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>Derechos Reserbados GREEN FOOD - 2023</p>
+        <div class="redes">
+            <a href="#"><i class="fa-brands fa-twitter"></i></a>
+            <a href="#"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#"><i class="fa-brands fa-instagram-square"></i></a>
+        </div>
+
+    </footer>
+
+    <script src="../JS/scriptInfo.js"></script>
+</body>
+
+</html>
