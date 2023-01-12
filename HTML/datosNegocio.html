@@ -30,23 +30,32 @@
             <!--Salir-->
             <li><a href=""><i class="fa fa-sign-out" aria-hidden="true" id="logout"></i></a></li>
         </ul>
-
         <sapn class="btn_menu">
             <i class="fa fa-bars"></i>
         </sapn>
     </nav>
     <!--Fin menu-->
 
-    <!--Editar perfil --><Br><br>
-    <form id="formularioDatosN" class="formulario" method="post">
-        <center><label>
-                <h2>B I E N V E N I D O</h2>
-            </label>
+    <!--Editar perfil -->
+    <br><br>
+    <div class="container" id="lista-productos">
+     <form id="formularioDatosN" class="formulario" method="post">
+         
+            
+            <div class="card mb-4 shadow-sm">
+                <div class="card-header">
+                    <center>
+                    <label>
+                        <h2>B I E N V E N I D O</h2>
+                    </label>
+                    </center>
+                </div>
+            </div>
 
-
+<div class="card-body">
             <label for="nombre">Nombre:</label>
             <input type="text" name="nombre" id="nombre">
-
+            
             <label for="telefono">Teléfono:</label>
             <input type="text" name="telefono" id="telefono">
 
@@ -58,11 +67,15 @@
 
             <label for="correo">Correo:</label>
             <input type="text" name="correo" id="correo">
-
-            <Br><Br>
-
-            <a class="botonEditar" href="editarNegocio.html"> Editar </a>
+            <br>
+            <br>
+            <br>
+            <a class="botonEditar" href="editarNegocio.html">Editar Información</a>
+            <a class="botonEditarContra" href="editarContraNegocio.html">Editar Contraseña</a>
+            <a class="botonEliminar" href="#">Eliminar Cuenta</a>
+        </div>
     </form>
+    </div>
 </body>
 
 </html>

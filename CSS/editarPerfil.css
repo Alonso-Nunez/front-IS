@@ -5,61 +5,215 @@ body{
 }
 
 form label{
-	width:100%;
+  text-align: center;
+	width:40%;
 	color: #2f5233;
-	font-family: arial;
+	font-family:Geneva;
+  font-size: 20px;
 }
 
 h2{
 	font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
-form input[type="text"],
-form input[type="email"]{
+form input[type="text"]{
 	width:50%;
-	padding:15px 15px;
-	border:1px solid #B1B1B1;
+	padding:5px 15px;
+	border:2px solid #B1B1B1;
 	border-radius:3px;
 	background-color:#fff;
-	margin:10px 0;
-	border-color: #003147;
-	height: 30PX;
+	border-color: #2f5233;
 }
 
+/* btn editar negocio */
+
 .botonEditar{
+  text-decoration: none;
+    padding: 10px;
+    font-weight: 600;
+    font-size: 16px;
+    color: #ffffff;
+    background-color: #2f5233;
+    border-radius: 50px;
+    border: 2px solid #2f5233;
+}
+
+.botonEditar:hover{
     text-decoration: none;
+    color:#2f5233;
+    background-color: #ffffff;
+}
+
+/* btn editar cliente */
+
+.botonEditarCliente{
+    text-decoration: none;
+      padding: 10px;
+      font-weight: 600;
+      font-size: 16px;
+      color: #ffffff;
+      background-color: rgb(5, 133, 35);
+      border-radius: 50px;
+      border: 2px solid rgb(5, 133, 35);
+}
+  
+.botonEditarCliente:hover{
+      text-decoration: none;
+      color:#2f5233;
+      background-color: #ffffff;
+}
+
+/* btn editar contrasena negocio */
+
+.botonEditarContra{
+    text-decoration: none;
+      padding: 10px;
+      font-weight: 600;
+      font-size: 16px;
+      color: #ffffff;
+      background-color: #2f5233;
+      border-radius: 50px;
+      border: 2px solid #2f5233;
+}
+  
+.botonEditarContra:hover{
+      text-decoration: none;
+      color:#2f5233;
+      background-color: #ffffff;
+}
+
+/* btn editar contrasena cliente */
+
+.botonEditarContraCliente{
+  text-decoration: none;
     padding: 10px;
     font-weight: 600;
     font-size: 16px;
     color: #ffffff;
     background-color: rgb(5, 133, 35);
-    border-radius: 4px;
+    border-radius: 50px;
     border: 2px solid rgb(5, 133, 35);
-  }
+}
 
-.botonEditar:hover{
+.botonEditarContraCliente:hover{
     text-decoration: none;
-    color:rgb(5, 133, 35);
+    color:#2f5233;
     background-color: #ffffff;
-  }
+}
 
+/* btn guardar negocio */
 
-  .botonEditarN{
-    text-decoration: none;
+.botonGuardar{
+  text-decoration: none;
     padding: 10px;
     font-weight: 600;
     font-size: 16px;
     color: #ffffff;
-    background-color: rgb(2, 52, 14);
-    border-radius: 4px;
-    border: 2px solid rgb(2, 52, 14);
-  }
+    background-color: #2f5233;
+    border-radius: 50px;
+    border: 2px solid #2f5233;
+}
 
-.botonEditarN:hover{
+.botonGuardar:hover{
     text-decoration: none;
-    color:rgb(2, 52, 14);
+    color:#2f5233;
     background-color: #ffffff;
-  }
+}
+
+/* btn guardar cliente */
+
+.botonGuardarCliente{
+  text-decoration: none;
+    padding: 10px;
+    font-weight: 600;
+    font-size: 16px;
+    color: #ffffff;
+    background-color: rgb(5, 133, 35);
+    border-radius: 50px;
+    border: 2px solid rgb(5, 133, 35);
+}
+
+.botonGuardarCliente:hover{
+    text-decoration: none;
+    color:#2f5233;
+    background-color: #ffffff;
+}
+
+/* btn eliminar negocio */
+
+.botonEliminar{
+      text-decoration: none;
+        padding: 10px;
+        font-weight: 600;
+        font-size: 16px;
+        color: #ffffff;
+        background-color: #7a1818;
+        border-radius: 50px;
+        border: 2px solid #7a1818;
+}
+    
+.botonEliminar:hover{
+        text-decoration: none;
+        color:#7a1818;
+        background-color: #ffffff;
+}
 
 
+/* btn eliminar cliente */
+
+.botonEliminarCliente{
+  text-decoration: none;
+    padding: 10px;
+    font-weight: 600;
+    font-size: 16px;
+    color: #ffffff;
+    background-color: #7a1818;
+    border-radius: 50px;
+    border: 2px solid #7a1818;
+}
+
+.botonEliminarCliente:hover{
+    text-decoration: none;
+    color:#7a1818;
+    background-color: #ffffff;
+}
+
+
+/* btn cancelar negocio */
+
+.botonCancelar{
+  text-decoration: none;
+    padding: 10px;
+    font-weight: 600;
+    font-size: 16px;
+    color: #ffffff;
+    background-color: #7a1818;
+    border-radius: 50px;
+    border: 2px solid #7a1818;
+}
+
+.botonCancelar:hover{
+    text-decoration: none;
+    color:#7a1818;
+    background-color: #ffffff;
+}
+
+/* btn cancelar cliente */
+
+.botonCancelarCliente{
+  text-decoration: none;
+    padding: 10px;
+    font-weight: 600;
+    font-size: 16px;
+    color: #ffffff;
+    background-color: #7a1818;
+    border-radius: 50px;
+    border: 2px solid #7a1818;
+}
+
+.botonCancelarCliente:hover{
+    text-decoration: none;
+    color:#7a1818;
+    background-color: #ffffff;
+}
   

@@ -38,12 +38,23 @@
     </nav>
     <!--Fin menu-->
 
-    <!--Editar perfil --><Br><br>
+    <!--Editar perfil -->
+    <br><br>
+    <div class="container" id="lista-productos">
     <form id="formularioEditC" class="formulario" method="post">
-        <center><label>
-                <h2>E D I T A R &nbsp P E R F I L</h2>
-            </label>
 
+       <div class="card mb-4 shadow-sm">
+                <div class="card-header">
+                    <center>
+                    <label>
+                        <h2>E D I T A R &nbsp P E R F I L</h2>
+                    </label>
+                    </center>
+                </div>
+            </div>
+
+
+            <div class="card-body">
             <label for="nombre">Nombre:</label>
             <input type="text" name="nombre" id="nombre">
 
@@ -58,10 +69,14 @@
 
             <label for="contra">Contraseña:</label>
             <input type="text" name="password" id="contra">
-            <Br><Br>
-            <input type="submit" value="Guardar" class="botonEditar">
-        </center>
+            <Br>
+            <Br>
+            <br>
+                <a class="botonGuardarCliente" href="#">Guardar</a>
+                <a class="botonCancelarCliente" href="datosCliente.html">Cancelar</a>
+            </div>
     </form>
+    </div>
 </body>
 
 </html>
