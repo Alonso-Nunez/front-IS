@@ -55,8 +55,15 @@
                     <input type="text" name="direccion" placeholder="Ubicación" maxlength="300"
                         data-validetta="required,maxLength[300]">
 
-                    <input type="text" name="horario" placeholder="Horario" maxlength="50"
-                        data-validetta="required,maxLength[50]">
+                    <label for="horario_a" style="position: inherit; color :#757575;">Hora de apertura:</label>
+                    <input type="time" name="horario_a" id="horario_a">
+                    <br>
+                    <label for="horario_c" style="position: inherit; color: #757575;">Hora de cierre:</label>
+                    <input type="time" name="horario_c" id="horario_c">
+                    <!--<label for="horario_c">hora de cierre</label>
+                    <input type="time" name="horario_a" maxlength="50" data-validetta="required,maxLength[50]">
+                    <label for="horario_c">hora de cierre</label>
+                    <input type="time" name="horario_c" maxlength="50" data-validetta="required,maxLength[50]">-->
 
                     <input type="email" name="correo" placeholder="example@example.com" maxlength="100"
                         data-validetta="required,maxLength[100],email">

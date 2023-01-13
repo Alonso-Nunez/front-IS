@@ -20,9 +20,10 @@
         <ul class="menu_items">
             <!--Inicio-->
             <li><a href="catalogoNegocio.html"><i class="fa fa-home" aria-hidden="true"></i></a></li>
-
             <!--Editar perfil -->
             <li><a href="datosNegocio.html"><i class="fa fa-user" aria-hidden="true"></i></a></li>
+            <!--Lista de pedidos-->
+            <li><a href="pedidosNegocio.html"><i class="fa fa-list" aria-hidden="true"></i></a></li>
             <!--Salir-->
             <li><a href="loginNegocio.html"><i class="fa fa-sign-out" aria-hidden="true"></i></a></li>
         </ul>
@@ -61,9 +62,9 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="precio" class="col-12 col-md-2 col-form-label h2">Precio:</label>
+                            <label for="precio" class="col-12 col-md-2 col-form-label h2">Precio $ c/u:</label>
                             <div class="col-12 col-md-10">
-                                <input type="text" class="form-control" id="precio" name="precio"
+                                <input type="number" class="form-control" id="precio" name="precio"
                                     placeholder="Ingrese precio del producto" required>
                             </div>
                         </div>
@@ -71,7 +72,8 @@
                             <label for="cantidad" class="col-12 col-md-2 col-form-label h2">Cantidad(Número de piezas,
                                 peso):</label>
                             <div class="col-12 col-md-10">
-                                <input type="number" class="form-control" id="cantidad" name="cantidad" required>
+                                <input type="number" class="form-control" id="cantidad" name="cantidad"
+                                    placeholder="Ingrese la cantidad disponible" required>
                             </div>
                         </div>
                         <div class="form-group row">
