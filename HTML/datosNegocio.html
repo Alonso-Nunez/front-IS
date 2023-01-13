@@ -38,43 +38,46 @@
 
     <!--Editar perfil -->
     <br><br>
-    <div class="container" id="lista-productos">
-     <form id="formularioDatosN" class="formulario" method="post">
-         
-            
+    <div class="container">
+        <form id="formularioDatosN" class="formulario" method="post">
+
+
             <div class="card mb-4 shadow-sm">
                 <div class="card-header">
                     <center>
-                    <label>
-                        <h2>B I E N V E N I D O</h2>
-                    </label>
+                        <label>
+                            <h2>B I E N V E N I D O S</h2>
+                        </label>
                     </center>
                 </div>
             </div>
 
-<div class="card-body">
-            <label for="nombre">Nombre:</label>
-            <input type="text" name="nombre" id="nombre">
-            
-            <label for="telefono">Teléfono:</label>
-            <input type="text" name="telefono" id="telefono">
+            <div class="card-body">
+                <label for="nombre">Nombre:</label>
+                <input disabled type="text" name="nombre" id="nombre">
+                <br>
+                <label for="telefono">Teléfono:</label>
+                <input disabled type="text" name="telefono" id="telefono">
+                <br>
+                <label for="direccion">Dirección:</label>
+                <input disabled type="text" name="direccion" id="direccion">
+                <br>
+                <label for="horario">Horario:</label>
+                <input disabled type="text" name="horario" id="horario">
+                <br>
+                <label for="correo">Correo:</label>
+                <input disabled type="text" name="correo" id="correo">
+                <br>
+                <br>
+                <br>
+                <center>
+                    <a class="botonEditar" href="editarNegocio.html">Editar Información</a>
+                    <a class="botonEditarContra" href="editarContraNegocio.html">Editar Contraseña</a>
+                    <a class="botonEliminar" id="eliminarcuenta">Eliminar Cuenta</a>
+                </center>
 
-            <label for="telefono">Dirección:</label>
-            <input type="text" name="direccion" id="direccion">
-
-            <label for="horario">Horario:</label>
-            <input type="text" name="horario" id="horario">
-
-            <label for="correo">Correo:</label>
-            <input type="text" name="correo" id="correo">
-            <br>
-            <br>
-            <br>
-            <a class="botonEditar" href="editarNegocio.html">Editar Información</a>
-            <a class="botonEditarContra" href="editarContraNegocio.html">Editar Contraseña</a>
-            <a class="botonEliminar" href="#">Eliminar Cuenta</a>
-        </div>
-    </form>
+            </div>
+        </form>
     </div>
 </body>
 
