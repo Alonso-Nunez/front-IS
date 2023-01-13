@@ -33,14 +33,19 @@ if (formDatosNeg != null) {
         formDatosNeg.nombre.value = response.data.nombre;
         formDatosNeg.telefono.value = response.data.telefono;
         formDatosNeg.direccion.value = response.data.direccion;
-        formDatosNeg.horario.value = response.data.horario;
+        formDatosNeg.horario_a.value = response.data.horario_a;
+        formDatosNeg.horario_c.value = response.data.horario_c;
         formDatosNeg.correo.value = response.data.correo;
         window.sessionStorage.setItem("nombre_neg", formDatosNeg.nombre.value);
         window.sessionStorage.setItem("tel_neg", formDatosNeg.telefono.value);
         window.sessionStorage.setItem("correo_neg", formDatosNeg.correo.value);
         window.sessionStorage.setItem(
-          "horario_neg",
-          formDatosNeg.horario.value
+          "horario_aneg",
+          formDatosNeg.horario_a.value
+        );
+        window.sessionStorage.setItem(
+          "horario_cneg",
+          formDatosNeg.horario_c.value
         );
         window.sessionStorage.setItem(
           "direccion_neg",
@@ -68,7 +73,8 @@ if (formEditNeg != null) {
         formEditNeg.nombre.value = response.data.nombre;
         formEditNeg.telefono.value = response.data.telefono;
         formEditNeg.direccion.value = response.data.direccion;
-        formEditNeg.horario.value = response.data.horario;
+        formEditNeg.horario_a.value = response.data.horario_a;
+        formEditNeg.horario_c.value = response.data.horario_c;
         formEditNeg.correo.value = response.data.correo;
       } else {
         window.alert(response.messages[0]);
@@ -93,7 +99,8 @@ if (formEditNeg != null) {
         direccion: datos.get("direccion"),
         telefono: datos.get("telefono"),
         correo: datos.get("correo"),
-        horario: datos.get("horario"),
+        horario_a: datos.get("horario_a"),
+        horario_c: datos.get("horario_c"),
       }),
     })
       .then((response) => response.json())
@@ -134,7 +141,8 @@ if (formEditCont != null) {
           correo: window.sessionStorage.getItem("correo_neg"),
           telefono: window.sessionStorage.getItem("tel_neg"),
           direccion: window.sessionStorage.getItem("direccion_neg"),
-          horario: window.sessionStorage.getItem("horario_neg"),
+          horario_a: window.sessionStorage.getItem("horario_aneg"),
+          horario_c: window.sessionStorage.getItem("horario_cneg"),
           password: datos.get("password2"),
         }),
       })
@@ -223,9 +231,9 @@ if (divListaProdNeg != null) {
                         <img src="${
                           host + datos[index].pathImage
                         }" class="card-img-top">
-                        <h1 class="card-title pricing-card-title precio"><span class="">${
+                        <h1 class="card-title pricing-card-title precio"><span class="">$${
                           datos[index].precio
-                        }</span></h1>
+                        } c/u</span></h1>
 
                         <ul class="list-unstyled mt-3 mb-4">
                             <li></li>
@@ -350,9 +358,7 @@ if (verToken == null && tiposesion == null) {
   window.alert(
     "No tienes permiso para acceder a esta pagina, se cerrara la sesion"
   );
-  window.sessionStorage.removeItem("access_token");
-  window.sessionStorage.removeItem("tipo_sesion");
-  window.location.href = "inicioSesion.html";
+  cerrar_session();
 }
 
 addEventListener("DOMContentLoaded", () => {
@@ -366,14 +372,19 @@ addEventListener("DOMContentLoaded", () => {
 });
 
 logout.addEventListener("click", () => {
+  cerrar_session();
+});
+
+function cerrar_session() {
   window.sessionStorage.removeItem("access_token");
   window.sessionStorage.removeItem("tipo_sesion");
   window.sessionStorage.removeItem("nombre_neg");
   window.sessionStorage.removeItem("tel_neg");
   window.sessionStorage.removeItem("correo_neg");
   window.sessionStorage.removeItem("direccion_neg");
-  window.sessionStorage.removeItem("horario_neg");
+  window.sessionStorage.removeItem("horario_aneg");
+  window.sessionStorage.removeItem("horario_cneg");
   window.location.href = "inicioSesion.html";
-});
+}
 
 //console.log(window.sessionStorage.getItem('access_token'));

@@ -14,9 +14,7 @@ if (verToken == null && tiposesion == null) {
   window.alert(
     "No tienes permiso para acceder a esta pagina, se cerrara la sesion"
   );
-  window.sessionStorage.removeItem("access_token");
-  window.sessionStorage.removeItem("tipo_sesion");
-  window.location.href = "inicioSesion.html";
+  cerrar_session();
 } else {
 }
 
@@ -178,9 +176,9 @@ if (divListaProdNeg != null) {
                           <img src="${
                             host + datos[index].pathImage
                           }" class="card-img-top">
-                          <h1 class="card-title pricing-card-title precio"><span class="">${
+                          <h1 class="card-title pricing-card-title precio"><span class="">$${
                             datos[index].precio
-                          }</span></h1>
+                          } c/u</span></h1>
   
                           <ul class="list-unstyled mt-3 mb-4">
                               <li></li>
@@ -195,7 +193,9 @@ if (divListaProdNeg != null) {
                           <input type="number" value="0" id="quantity" name="quantity" min="1" max="${
                             datos[index].disponibilidad
                           }">
-                          <input type="submit" class="btn btn-danger" value="Reservar" data-idP="${datos[index].id}" data-idN="${datos[index].negocio_id}">
+                          <input type="submit" class="btn btn-danger" value="Reservar" data-idP="${
+                            datos[index].id
+                          }" data-idN="${datos[index].negocio_id}">
                       </div>
                   </div>`;
           //Agrega otro div (fila) para los productos
@@ -205,29 +205,29 @@ if (divListaProdNeg != null) {
             divListaProdNeg.appendChild(div);
           }
         }
-  
-          var btnsReservar = document.getElementsByClassName("btn-danger");
-          for (d of btnsReservar) {
-            d.addEventListener("click", function () {
-              var idP = this.getAttribute("data-idP");
-              var idN = this.getAttribute("data-idN");
-              var parent = this.parentElement
-              var cantidad = parent.childNodes[10].value;
 
-              if(cantidad == 0){
-                window.alert('¡Agrega una cantidad a tu pedido!');
-              } else {
-                var datos =  new FormData();
-                datos.append('publicacion_id',idP);
-                datos.append('negocio_id',idN);
-                datos.append('cantidad',cantidad);
-                fetch("http://127.0.0.1:8000/api/pedido", {
-                  method: "POST",
-                  headers: {
-                    Authorization: "Bearer " + verToken,
-                  },
-                  body: datos
-                })
+        var btnsReservar = document.getElementsByClassName("btn-danger");
+        for (d of btnsReservar) {
+          d.addEventListener("click", function () {
+            var idP = this.getAttribute("data-idP");
+            var idN = this.getAttribute("data-idN");
+            var parent = this.parentElement;
+            var cantidad = parent.childNodes[10].value;
+
+            if (cantidad == 0) {
+              window.alert("¡Agrega una cantidad a tu pedido!");
+            } else {
+              var datos = new FormData();
+              datos.append("publicacion_id", idP);
+              datos.append("negocio_id", idN);
+              datos.append("cantidad", cantidad);
+              fetch("http://127.0.0.1:8000/api/pedido", {
+                method: "POST",
+                headers: {
+                  Authorization: "Bearer " + verToken,
+                },
+                body: datos,
+              })
                 .then((response) => response.json())
                 .then((response) => {
                   if (response.success) {
@@ -236,37 +236,34 @@ if (divListaProdNeg != null) {
                     window.alert(response.messages[0]);
                   }
                 });
-              }
+            }
 
-              /**/
-            });
-          }
-  
-          var btnsInfo = document.getElementsByClassName("btn-success");
-          for (e of btnsInfo) {
-            e.addEventListener("click", function () {
-              var idx = this.getAttribute("data-idx");
-              var data = datos[idx]
-              var parent = this.parentElement
-              var list = parent.childNodes[5]
-              if(this.value == 'Mas información') {
-                list.innerHTML += `<li>Descripcion: ${data.descripcion}</li>
+            /**/
+          });
+        }
+
+        var btnsInfo = document.getElementsByClassName("btn-success");
+        for (e of btnsInfo) {
+          e.addEventListener("click", function () {
+            var idx = this.getAttribute("data-idx");
+            var data = datos[idx];
+            var parent = this.parentElement;
+            var list = parent.childNodes[5];
+            if (this.value == "Mas información") {
+              list.innerHTML += `<li>Descripcion: ${data.descripcion}</li>
                               <li>Direccion: ${data.direccion}</li>
                               <li>Horario: ${data.horario}</li>`;
-                this.value = 'Menos información';
-              } else if(this.value == 'Menos información') {
-                list.innerHTML = `<li></li>
+              this.value = "Menos información";
+            } else if (this.value == "Menos información") {
+              list.innerHTML = `<li></li>
                   <li>Negocio: <b>${data.negocio}</b></li>
                   <li>${data.nombre}</li>
-                  <li>Cantidad disponible: ${
-                    data.disponibilidad
-                  } </li>
+                  <li>Cantidad disponible: ${data.disponibilidad} </li>
                   <li>Promocion: ${data.promocion}</li>`;
-                this.value = 'Mas información';
-              }
-              
-            });
-          }
+              this.value = "Mas información";
+            }
+          });
+        }
       } else {
         window.alert(response.messages[0]);
       }
@@ -284,8 +281,15 @@ addEventListener("DOMContentLoaded", () => {
 });
 
 logout.addEventListener("click", () => {
-  window.sessionStorage.removeItem("access_token");
-  window.sessionStorage.removeItem("tipo_sesion");
-  window.location.href = "inicioSesion.html";
+  cerrar_session();
 });
 
+function cerrar_session() {
+  window.sessionStorage.removeItem("access_token");
+  window.sessionStorage.removeItem("tipo_sesion");
+  window.sessionStorage.removeItem("nombre_cli");
+  window.sessionStorage.removeItem("direccion_cli");
+  window.sessionStorage.removeItem("telefono_cli");
+  window.sessionStorage.removeItem("correo_cli");
+  window.location.href = "inicioSesion.html";
+}
