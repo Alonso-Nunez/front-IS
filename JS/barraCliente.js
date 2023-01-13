@@ -160,6 +160,7 @@ if (divListaProdNeg != null) {
     .then((response) => {
       if (response.success) {
         datos = response.data;
+        console.log(datos)
         const host = "http://127.0.0.1:8000";
         //La siguiente variable cambia el numero de productos por fila
         var numElem = 2;
@@ -254,7 +255,7 @@ if (divListaProdNeg != null) {
             if (this.value == "Mas información") {
               list.innerHTML += `<li>Descripcion: ${data.descripcion}</li>
                               <li>Direccion: ${data.direccion}</li>
-                              <li>Horario: ${data.horario}</li>`;
+                              <li>Horario Cierre: ${data.horario_c}</li>`;
               this.value = "Menos información";
             } else if (this.value == "Menos información") {
               list.innerHTML = `<li></li>
