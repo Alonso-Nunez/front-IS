@@ -155,10 +155,11 @@ if (divListaProdNeg != null) {
                           </ul>
                           <input type="submit" class="btn btn-success" value="Mas información" data-id="${
                             datos[index].id
+                          }"><br>
+                          <input type="number" value="0" id="quantity" name="quantity" min="1" max="${
+                            datos[index].disponibilidad
                           }">
-                          <input type="submit" class="btn btn-danger" value="Reservar" data-id="${
-                            datos[index].id
-                          }">
+                          <input type="submit" class="btn btn-danger" value="Reservar" data-idP="${datos[index].id}" data-idN="${datos[index].negocio_id}">
                       </div>
                   </div>`;
             //Agrega otro div (fila) para los productos
@@ -170,32 +171,44 @@ if (divListaProdNeg != null) {
             }
           }
   
-          /*var btnsDelete = document.getElementsByClassName("btn-danger");
-          for (d of btnsDelete) {
+          var btnsReservar = document.getElementsByClassName("btn-danger");
+          for (d of btnsReservar) {
             d.addEventListener("click", function () {
-              var id = this.getAttribute("data-id");
-              fetch("http://127.0.0.1:8000/api/publicacion/" + id, {
-                method: "DELETE",
-                headers: {
-                  Accept: "application/json",
-                  "Content-Type": "application/json",
-                  Authorization: "Bearer " + verToken,
-                },
-              })
+              var idP = this.getAttribute("data-idP");
+              var idN = this.getAttribute("data-idN");
+              var parent = this.parentElement
+              var cantidad = parent.childNodes[10].value;
+
+              if(cantidad == 0){
+                window.alert('¡Agrega una cantidad a tu pedido!');
+              } else {
+                var datos =  new FormData();
+                datos.append('publicacion_id',idP);
+                datos.append('negocio_id',idN);
+                datos.append('cantidad',cantidad);
+                fetch("http://127.0.0.1:8000/api/pedido", {
+                  method: "POST",
+                  headers: {
+                    Authorization: "Bearer " + verToken,
+                  },
+                  body: datos
+                })
                 .then((response) => response.json())
                 .then((response) => {
                   //console.log(response)
                   if (response.success) {
                     window.alert(response.messages[0]);
-                    location.reload();
                   } else {
                     window.alert(response.messages[0]);
                   }
                 });
+              }
+
+              /**/
             });
           }
   
-          var btnsEdit = document.getElementsByClassName("btn-success");
+          /*var btnsEdit = document.getElementsByClassName("btn-success");
           for (e of btnsEdit) {
             e.addEventListener("click", function () {
               var idP = this.getAttribute("data-id");
