@@ -16,6 +16,8 @@ console.log(divListaProdNeg);
 
 var formEditPublication = document.getElementById("editar-oferta");
 
+var listaReserva = document.getElementById("lista-reserva");
+
 if (formDatosNeg != null) {
   fetch("http://127.0.0.1:8000/api/negocio/auth", {
     method: "GET",
@@ -350,6 +352,95 @@ if (formEditPublication != null) {
         }
       });
   });
+}
+
+if (listaReserva != null) {
+  var datos = null;
+  fetch("http://127.0.0.1:8000/api/pedido/negocio", {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + verToken,
+    },
+  })
+    .then((response) => response.json())
+    .then((response) => {
+      if (response.success) {
+        datos = response.data;
+        
+        for (let index = 0; index < datos.length; index++) {
+          console.log(datos[index])
+          listaReserva.innerHTML += `<tr>
+                <th scope="col">
+                    <center>${datos[index].cliente}</center>
+                </th>
+                <th scope="col">
+                    <center>${datos[index].telefono}</center>
+                </th>
+                <th scope="col">
+                    <center>${datos[index].producto}</center>
+                </th>
+                <th scope="col">
+                    <center>${datos[index].cantidad}</center>
+                </th>
+                <th scope="col">
+                    <center>$${datos[index].precio}</center>
+                </th>
+                <th scope="col">
+                    <center>${datos[index].fecha}</center>
+                </th>
+                <th scope="col">
+                    <center>${datos[index].hora}</center>
+                </th>
+                <th scope="col">
+                    <center>$${datos[index].total}</center>
+                </th>
+                <th scope="col">
+                    <center><button type="button" class="btn btn-danger">Rechazar</button>
+                    </center>
+                </th>
+            </tr>`;
+        }
+  
+          var btnsReservar = document.getElementsByClassName("btn-danger");
+          for (d of btnsReservar) {
+            d.addEventListener("click", function () {
+              var idP = this.getAttribute("data-idP");
+              var idN = this.getAttribute("data-idN");
+              var parent = this.parentElement
+              var cantidad = parent.childNodes[10].value;
+
+              if(cantidad == 0){
+                window.alert('¡Agrega una cantidad a tu pedido!');
+              } else {
+                var datos =  new FormData();
+                datos.append('publicacion_id',idP);
+                datos.append('negocio_id',idN);
+                datos.append('cantidad',cantidad);
+                fetch("http://127.0.0.1:8000/api/pedido", {
+                  method: "POST",
+                  headers: {
+                    Authorization: "Bearer " + verToken,
+                  },
+                  body: datos
+                })
+                .then((response) => response.json())
+                .then((response) => {
+                  if (response.success) {
+                    window.alert(response.messages[0]);
+                  } else {
+                    window.alert(response.messages[0]);
+                  }
+                });
+              }
+            });
+          }
+          
+      } else {
+        window.alert(response.messages[0]);
+      }
+    });
 }
 
 if (verToken == null && tiposesion == null) {
