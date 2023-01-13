@@ -397,43 +397,38 @@ if (listaReserva != null) {
                     <center>$${datos[index].total}</center>
                 </th>
                 <th scope="col">
-                    <center><button type="button" class="btn btn-danger">Rechazar</button>
+                    <center><button type="button" class="btn btn-danger" data-id="${index}">Rechazar</button>
                     </center>
                 </th>
             </tr>`;
         }
   
-          var btnsReservar = document.getElementsByClassName("btn-danger");
-          for (d of btnsReservar) {
+          var btnsRechazar = document.getElementsByClassName("btn-danger");
+          for (d of btnsRechazar) {
             d.addEventListener("click", function () {
-              var idP = this.getAttribute("data-idP");
-              var idN = this.getAttribute("data-idN");
-              var parent = this.parentElement
-              var cantidad = parent.childNodes[10].value;
+              var id = this.getAttribute("data-id");
+              var data = datos[id];
+              console.log(data)
 
-              if(cantidad == 0){
-                window.alert('¡Agrega una cantidad a tu pedido!');
-              } else {
-                var datos =  new FormData();
-                datos.append('publicacion_id',idP);
-                datos.append('negocio_id',idN);
-                datos.append('cantidad',cantidad);
-                fetch("http://127.0.0.1:8000/api/pedido", {
+              fetch("http://127.0.0.1:8000/api/pedido/negocio/rechazar", {
                   method: "POST",
                   headers: {
-                    Authorization: "Bearer " + verToken,
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                    Authorization: "Bearer " + verToken
                   },
-                  body: datos
+                  body: JSON.stringify(data)
                 })
                 .then((response) => response.json())
                 .then((response) => {
                   if (response.success) {
                     window.alert(response.messages[0]);
+                    location.reload();
                   } else {
                     window.alert(response.messages[0]);
                   }
                 });
-              }
+              
             });
           }
           
