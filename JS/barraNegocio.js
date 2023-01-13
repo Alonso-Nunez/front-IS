@@ -12,11 +12,12 @@ var formAddPublication = document.getElementById("procesar-oferta");
 
 //catalogoNegocio.html
 var divListaProdNeg = document.getElementById("lista-productos");
-console.log(divListaProdNeg);
 
 var formEditPublication = document.getElementById("editar-oferta");
 
 var listaReserva = document.getElementById("lista-reserva");
+
+var botonEliminarCuenta = document.getElementById("eliminarcuenta");
 
 if (formDatosNeg != null) {
   fetch("http://127.0.0.1:8000/api/negocio/auth", {
@@ -29,8 +30,6 @@ if (formDatosNeg != null) {
   })
     .then((response) => response.json())
     .then((response) => {
-      console.log(response);
-      console.log(response.data);
       if (response.success) {
         formDatosNeg.nombre.value = response.data.nombre;
         formDatosNeg.telefono.value = response.data.telefono;
@@ -86,8 +85,7 @@ if (formEditNeg != null) {
   //Servicio que actualiza la información del negocio
   formEditNeg.addEventListener("submit", function (e) {
     e.preventDefault();
-    console.log("click");
-
+    
     var datos = new FormData(formEditNeg);
     fetch("http://127.0.0.1:8000/api/negocio", {
       method: "PUT",
@@ -107,8 +105,6 @@ if (formEditNeg != null) {
     })
       .then((response) => response.json())
       .then((response) => {
-        console.log(response);
-        console.log(response.data);
         if (response.success) {
           window.alert(response.messages[0]);
         } else {
@@ -121,7 +117,6 @@ if (formEditNeg != null) {
 if (formEditCont != null) {
   formEditCont.addEventListener("submit", function (e) {
     e.preventDefault();
-    console.log("click");
     var datos = new FormData(formEditCont);
 
     if (datos.get("password") == "") {
@@ -150,8 +145,6 @@ if (formEditCont != null) {
       })
         .then((response) => response.json())
         .then((response) => {
-          console.log(response);
-          console.log(response.data);
           if (response.success) {
             window.alert(response.messages[0]);
           } else {
@@ -170,11 +163,9 @@ Crea las publicaciones en la base de datos
 if (formAddPublication != null) {
   formAddPublication.addEventListener("submit", function (e) {
     e.preventDefault();
-    //console.log("click")
-
+    
     var datos = new FormData(formAddPublication);
     var file = document.getElementById("upload").files[0];
-    //console.log(file)
     datos.append("image", file);
     fetch("http://127.0.0.1:8000/api/publicacion", {
       method: "POST",
@@ -185,8 +176,6 @@ if (formAddPublication != null) {
     })
       .then((response) => response.json())
       .then((response) => {
-        //console.log(response)
-        //console.log(response.data)
         if (response.success) {
           window.alert(response.messages[0]);
         } else {
@@ -212,7 +201,6 @@ if (divListaProdNeg != null) {
     .then((response) => response.json())
     .then((response) => {
       //console.log(response)
-      console.log(response.data);
       if (response.success) {
         datos = response.data;
         const host = "http://127.0.0.1:8000";
@@ -330,8 +318,7 @@ if (formEditPublication != null) {
   //Servicio que actualiza la información del negocio
   formEditPublication.addEventListener("submit", function (e) {
     e.preventDefault();
-    console.log("click");
-
+    
     var datos = new FormData(formEditPublication);
     fetch("http://127.0.0.1:8000/api/publicacion/" + idPub, {
       method: "POST",
@@ -342,8 +329,6 @@ if (formEditPublication != null) {
     })
       .then((response) => response.json())
       .then((response) => {
-        console.log(response);
-        console.log(response.data);
         if (response.success) {
           window.alert(response.messages[0]);
           window.location.href = "catalogoNegocio.html";
@@ -370,7 +355,6 @@ if (listaReserva != null) {
         datos = response.data;
         
         for (let index = 0; index < datos.length; index++) {
-          console.log(datos[index])
           listaReserva.innerHTML += `<tr>
                 <th scope="col">
                     <center>${datos[index].cliente}</center>
@@ -408,7 +392,6 @@ if (listaReserva != null) {
             d.addEventListener("click", function () {
               var id = this.getAttribute("data-id");
               var data = datos[id];
-              console.log(data)
 
               fetch("http://127.0.0.1:8000/api/pedido/negocio/rechazar", {
                   method: "POST",
@@ -436,6 +419,28 @@ if (listaReserva != null) {
         window.alert(response.messages[0]);
       }
     });
+}
+
+if (botonEliminarCuenta != null) {
+  botonEliminarCuenta.addEventListener("click", function () {
+    fetch("http://127.0.0.1:8000/api/negocio/destroy", {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + verToken,
+    },
+  })
+    .then((response) => response.json())
+    .then((response) => {
+      if (response.success) {
+        window.alert(response.messages[0]);
+        cerrar_session();
+      } else {
+        window.alert(response.messages[0]);
+      }
+    });
+  });
 }
 
 if (verToken == null && tiposesion == null) {

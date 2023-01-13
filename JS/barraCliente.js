@@ -10,6 +10,8 @@ var divListaProdNeg = document.getElementById("lista-productos");
 
 var listaReserva = document.getElementById("lista-reserva");
 
+var botonEliminarCuenta = document.getElementById("eliminarcuenta");
+
 if (verToken == null && tiposesion == null) {
   window.location.href = "inicioSesion.html";
 } else if (verToken != null && tiposesion == "negocio") {
@@ -21,8 +23,6 @@ if (verToken == null && tiposesion == null) {
 }
 
 if (formDatosCliente != null) {
-  /*console.log(formDatosCliente)
-    console.log(formDatosCliente.nombre)*/
 
   fetch("http://127.0.0.1:8000/api/cliente/auth", {
     method: "GET",
@@ -34,8 +34,6 @@ if (formDatosCliente != null) {
   })
     .then((response) => response.json())
     .then((response) => {
-      console.log(response);
-      console.log(response.data);
       if (response.success) {
         formDatosCliente.nombre.value = response.data.nombre;
         formDatosCliente.telefono.value = response.data.telefono;
@@ -289,7 +287,6 @@ if (listaReserva != null) {
         datos = response.data;
         
         for (let index = 0; index < datos.length; index++) {
-          console.log(datos[index])
           listaReserva.innerHTML += `<tr>
                 <th scope="col">
                     <center>${datos[index].producto}</center>
@@ -353,6 +350,28 @@ if (listaReserva != null) {
         window.alert(response.messages[0]);
       }
     });
+}
+
+if (botonEliminarCuenta != null) {
+  botonEliminarCuenta.addEventListener("click", function () {
+    fetch("http://127.0.0.1:8000/api/cliente/destroy", {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + verToken,
+    },
+  })
+    .then((response) => response.json())
+    .then((response) => {
+      if (response.success) {
+        window.alert(response.messages[0]);
+        cerrar_session();
+      } else {
+        window.alert(response.messages[0]);
+      }
+    });
+  });
 }
 
 addEventListener("DOMContentLoaded", () => {
