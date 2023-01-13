@@ -29,7 +29,7 @@
             <!--Editar perfil -->
             <li><a href="datosNegocio.html"><i class="fa fa-user" aria-hidden="true"></i></a></li>
             <!--Carrito de compras-->
-            <li><a href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a></li>
+            <li><a href="ofertaNegocio.html"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a></li>
             <!--Salir-->
             <li><a href="#"><i class="fa fa-sign-out" aria-hidden="true" id="logout"></i></a></li>
         </ul>
@@ -42,42 +42,45 @@
 
     <!--Editar perfil -->
     <br><br>
-    <div class="container" id="lista-productos">
-    <form id="formularioEditNeg" class="formulario" method="post">
+    <div class="container">
+        <form id="formularioEditNeg" class="formulario" method="post">
 
-                <div class="card mb-4 shadow-sm">
+            <div class="card mb-4 shadow-sm">
                 <div class="card-header">
                     <center>
-                    <label>
-                        <h2>E D I T A R &nbsp P E R F I L</h2>
-                    </label>
+                        <label>
+                            <h2>E D I T A R <br> P E R F I L</h2>
+                        </label>
                     </center>
                 </div>
             </div>
 
-       <div class="card-body">
-            <label for="nombre">Nombre:</label>
-            <input type="text" name="nombre" id="nombre">
-            
-            <label for="telefono">Teléfono:</label>
-            <input type="text" name="telefono" id="telefono">
+            <div class="card-body">
+                <label for="nombre">Nombre:</label>
+                <input type="text" name="nombre" id="nombre">
+                <br>
+                <label for="telefono">Teléfono:</label>
+                <input type="text" name="telefono" id="telefono">
+                <br>
+                <label for="direccion">Dirección:</label>
+                <input type="text" name="direccion" id="direccion">
+                <br>
+                <label for="horario">Horario:</label>
+                <input type="text" name="horario" id="horario">
+                <br>
+                <label for="correo">Correo:</label>
+                <input type="text" name="correo" id="correo">
+                <br>
+                <br>
+                <br>
+                <center>
+                    <input type="submit" class="botonGuardar" value="Guardar">
+                    <a class="botonCancelar" href="datosNegocio.html">Cancelar</a>
+                </center>
 
-            <label for="telefono">Dirección:</label>
-            <input type="text" name="direccion" id="direccion">
-
-            <label for="horario">Horario:</label>
-            <input type="text" name="horario" id="horario">
-
-            <label for="correo">Correo:</label>
-            <input type="text" name="correo" id="correo">
-            <br>
-            <br>
-            <br>
-            <a class="botonGuardar" href="#">Guardar</a>
-            <a class="botonCancelar" href="datosNegocio.html">Cancelar</a>
-        </div>
-    </form>
-</div>
+            </div>
+        </form>
+    </div>
 </body>
 
 </html>

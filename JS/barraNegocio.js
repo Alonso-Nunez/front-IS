@@ -1,15 +1,18 @@
 var verToken = window.sessionStorage.getItem("access_token");
 var tiposesion = window.sessionStorage.getItem("tipo_sesion");
+
 var logout = document.getElementById("logout");
 
 var formDatosNeg = document.getElementById("formularioDatosN");
 var formEditNeg = document.getElementById("formularioEditNeg");
+var formEditCont = document.getElementById("formularioEditNegCont");
 
 //ofertaNegocio.html
 var formAddPublication = document.getElementById("procesar-oferta");
 
 //catalogoNegocio.html
 var divListaProdNeg = document.getElementById("lista-productos");
+console.log(divListaProdNeg);
 
 var formEditPublication = document.getElementById("editar-oferta");
 
@@ -32,6 +35,17 @@ if (formDatosNeg != null) {
         formDatosNeg.direccion.value = response.data.direccion;
         formDatosNeg.horario.value = response.data.horario;
         formDatosNeg.correo.value = response.data.correo;
+        window.sessionStorage.setItem("nombre_neg", formDatosNeg.nombre.value);
+        window.sessionStorage.setItem("tel_neg", formDatosNeg.telefono.value);
+        window.sessionStorage.setItem("correo_neg", formDatosNeg.correo.value);
+        window.sessionStorage.setItem(
+          "horario_neg",
+          formDatosNeg.horario.value
+        );
+        window.sessionStorage.setItem(
+          "direccion_neg",
+          formDatosNeg.direccion.value
+        );
       } else {
         window.alert(response.messages[0]);
       }
@@ -67,11 +81,47 @@ if (formEditNeg != null) {
     console.log("click");
 
     var datos = new FormData(formEditNeg);
-    console.log(datos.get("password"));
-    console.log(datos.get("password2"));
-    console.log(datos.get("password3"));
+    fetch("http://127.0.0.1:8000/api/negocio", {
+      method: "PUT",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + verToken,
+      },
+      body: JSON.stringify({
+        nombre: datos.get("nombre"),
+        direccion: datos.get("direccion"),
+        telefono: datos.get("telefono"),
+        correo: datos.get("correo"),
+        horario: datos.get("horario"),
+      }),
+    })
+      .then((response) => response.json())
+      .then((response) => {
+        console.log(response);
+        console.log(response.data);
+        if (response.success) {
+          window.alert(response.messages[0]);
+        } else {
+          window.alert(response.messages[0]);
+        }
+      });
+  });
+}
+//Editar contraseña
+if (formEditCont != null) {
+  formEditCont.addEventListener("submit", function (e) {
+    e.preventDefault();
+    console.log("click");
+    var datos = new FormData(formEditCont);
 
-    if (datos.get("password2") == "") {
+    if (datos.get("password") == "") {
+      window.alert("Es necesario ingresar los datos requeridos");
+    } else if (datos.get("password2") == "") {
+      window.alert("Es necesario ingresar una nueva contraseña");
+    } else if (datos.get("password2") != datos.get("password3")) {
+      window.alert("Las nuevas constraseñas no coinciden");
+    } else if (datos.get("password") != datos.get("password2")) {
       fetch("http://127.0.0.1:8000/api/negocio", {
         method: "PUT",
         headers: {
@@ -80,12 +130,12 @@ if (formEditNeg != null) {
           Authorization: "Bearer " + verToken,
         },
         body: JSON.stringify({
-          nombre: datos.get("nombre"),
-          direccion: datos.get("direccion"),
-          telefono: datos.get("telefono"),
-          correo: datos.get("correo"),
-          horario: datos.get("horario"),
-          password: datos.get("password"),
+          nombre: window.sessionStorage.getItem("nombre_neg"),
+          correo: window.sessionStorage.getItem("correo_neg"),
+          telefono: window.sessionStorage.getItem("tel_neg"),
+          direccion: window.sessionStorage.getItem("direccion_neg"),
+          horario: window.sessionStorage.getItem("horario_neg"),
+          password: datos.get("password2"),
         }),
       })
         .then((response) => response.json())
@@ -98,39 +148,8 @@ if (formEditNeg != null) {
             window.alert(response.messages[0]);
           }
         });
-    } else if (datos.get("password2") != datos.get("password3")) {
-      window.alert("La nueva contraseña no coincide");
-    } else {
-      if (datos.get("password") != datos.get("password2")) {
-        fetch("http://127.0.0.1:8000/api/negocio", {
-          method: "PUT",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + verToken,
-          },
-          body: JSON.stringify({
-            nombre: datos.get("nombre"),
-            direccion: datos.get("direccion"),
-            telefono: datos.get("telefono"),
-            correo: datos.get("correo"),
-            horario: datos.get("horario"),
-            password: datos.get("password2"),
-          }),
-        })
-          .then((response) => response.json())
-          .then((response) => {
-            console.log(response);
-            console.log(response.data);
-            if (response.success) {
-              window.alert(response.messages[0]);
-            } else {
-              window.alert(response.messages[0]);
-            }
-          });
-      } else {
-        window.alert("La nueva contraseña no puede ser igual a la anterior");
-      }
+    } else if (datos.get("password") == datos.get("password2")) {
+      window.alert("La nueva contraseña no puede ser igual a la anterior");
     }
   });
 }
@@ -183,7 +202,7 @@ if (divListaProdNeg != null) {
     .then((response) => response.json())
     .then((response) => {
       //console.log(response)
-      //console.log(response.data)
+      console.log(response.data);
       if (response.success) {
         datos = response.data;
         const host = "http://127.0.0.1:8000";
@@ -349,6 +368,11 @@ addEventListener("DOMContentLoaded", () => {
 logout.addEventListener("click", () => {
   window.sessionStorage.removeItem("access_token");
   window.sessionStorage.removeItem("tipo_sesion");
+  window.sessionStorage.removeItem("nombre_neg");
+  window.sessionStorage.removeItem("tel_neg");
+  window.sessionStorage.removeItem("correo_neg");
+  window.sessionStorage.removeItem("direccion_neg");
+  window.sessionStorage.removeItem("horario_neg");
   window.location.href = "inicioSesion.html";
 });
 

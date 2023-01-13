@@ -1,135 +1,183 @@
-var verToken = window.sessionStorage.getItem('access_token');
-var tiposesion = window.sessionStorage.getItem('tipo_sesion');
-var logout = document.getElementById('logout');
+var verToken = window.sessionStorage.getItem("access_token");
+var tiposesion = window.sessionStorage.getItem("tipo_sesion");
+var logout = document.getElementById("logout");
 
 var formDatosCliente = document.getElementById("formularioDatosC");
 var formEditarCliente = document.getElementById("formularioEditC");
+var formEditarCont = document.getElementById("formularioEditClienteCont");
 
 var divListaProdNeg = document.getElementById("lista-productos");
-console.log(divListaProdNeg)
+console.log(divListaProdNeg);
 
 if (verToken == null && tiposesion == null) {
-    window.location.href = 'inicioSesion.html';
-}else if(verToken != null && tiposesion == "negocio"){
-    window.alert("No tienes permiso para acceder a esta pagina, se cerrara la sesion");
-    window.sessionStorage.removeItem('access_token');
-    window.sessionStorage.removeItem('tipo_sesion');
-    window.location.href = 'inicioSesion.html';
-}else{
-
+  window.location.href = "inicioSesion.html";
+} else if (verToken != null && tiposesion == "negocio") {
+  window.alert(
+    "No tienes permiso para acceder a esta pagina, se cerrara la sesion"
+  );
+  window.sessionStorage.removeItem("access_token");
+  window.sessionStorage.removeItem("tipo_sesion");
+  window.location.href = "inicioSesion.html";
+} else {
 }
 
 if (formDatosCliente != null) {
-
-    /*console.log(formDatosCliente)
+  /*console.log(formDatosCliente)
     console.log(formDatosCliente.nombre)*/
 
-    fetch('http://127.0.0.1:8000/api/cliente/auth', {
-        method: 'GET',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer '+ verToken
-        }
-    })
-    .then(response => response.json())
+  fetch("http://127.0.0.1:8000/api/cliente/auth", {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + verToken,
+    },
+  })
+    .then((response) => response.json())
     .then((response) => {
-        console.log(response)
-        console.log(response.data)
-        if(response.success){
-            formDatosCliente.nombre.value = response.data.nombre;
-            formDatosCliente.telefono.value = response.data.telefono;
-            formDatosCliente.direccion.value = response.data.direccion;
-            formDatosCliente.correo.value = response.data.correo;
-        }
-        else{
-            window.alert(response.messages[0]);
-        }
-    })
+      console.log(response);
+      console.log(response.data);
+      if (response.success) {
+        formDatosCliente.nombre.value = response.data.nombre;
+        formDatosCliente.telefono.value = response.data.telefono;
+        formDatosCliente.direccion.value = response.data.direccion;
+        formDatosCliente.correo.value = response.data.correo;
+        window.sessionStorage.setItem("nombre_cli", response.data.nombre);
+        window.sessionStorage.setItem("telefono_cli", response.data.telefono);
+        window.sessionStorage.setItem("direccion_cli", response.data.direccion);
+        window.sessionStorage.setItem("correo_cli", response.data.correo);
+      } else {
+        window.alert(response.messages[0]);
+      }
+    });
 }
 
 if (formEditarCliente != null) {
-    //Servicio que devuelve información del cliente
-    fetch('http://127.0.0.1:8000/api/cliente/auth', {
-        method: 'GET',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer '+ verToken
-        }
-    })
-    .then(response => response.json())
+  //Servicio que devuelve información del cliente
+  fetch("http://127.0.0.1:8000/api/cliente/auth", {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + verToken,
+    },
+  })
+    .then((response) => response.json())
     .then((response) => {
-        if(response.success){
-            formEditarCliente.nombre.value = response.data.nombre;
-            formEditarCliente.telefono.value = response.data.telefono;
-            formEditarCliente.direccion.value = response.data.direccion;
-            formEditarCliente.correo.value = response.data.correo;
-        }
-        else{
-            window.alert(response.messages[0]);
-        }
-    })
+      if (response.success) {
+        formEditarCliente.nombre.value = response.data.nombre;
+        formEditarCliente.telefono.value = response.data.telefono;
+        formEditarCliente.direccion.value = response.data.direccion;
+        formEditarCliente.correo.value = response.data.correo;
+      } else {
+        window.alert(response.messages[0]);
+      }
+    });
 
-    //Servicio que actualiza la información del cliente
-    formEditarCliente.addEventListener('submit', function(e){
-        e.preventDefault();
-        console.log("click")
-    
-        var datos =  new FormData(formEditarCliente);
-        fetch('http://127.0.0.1:8000/api/cliente', {
-            method: 'PUT',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer '+ verToken
-            },
-            body: JSON.stringify({
-                "nombre": datos.get('nombre'),
-                "direccion": datos.get('direccion'),
-                "telefono": datos.get('telefono'),
-                "correo": datos.get('correo'),
-                "password": datos.get('password')})
-        })
-        .then(response => response.json())
-        .then((response) => {
-            console.log(response)
-            console.log(response.data)
-            if(response.success){
-                window.alert(response.messages[0]);
-            }
-            else{
-                window.alert(response.messages[0]);
-            }
-        })
-    })
-}
+  //Servicio que actualiza la información del cliente
+  formEditarCliente.addEventListener("submit", function (e) {
+    e.preventDefault();
+    console.log("click");
 
-if (divListaProdNeg != null) {
-    var datos = null;
-    fetch("http://127.0.0.1:8000/api/publicacion", {
-      method: "GET",
+    var datos = new FormData(formEditarCliente);
+    fetch("http://127.0.0.1:8000/api/cliente", {
+      method: "PUT",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
         Authorization: "Bearer " + verToken,
       },
+      body: JSON.stringify({
+        nombre: datos.get("nombre"),
+        direccion: datos.get("direccion"),
+        telefono: datos.get("telefono"),
+        correo: datos.get("correo"),
+      }),
     })
       .then((response) => response.json())
       .then((response) => {
-        //console.log(response)
-        //console.log(response.data)
+        console.log(response);
+        console.log(response.data);
         if (response.success) {
-          datos = response.data;
-          const host = "http://127.0.0.1:8000";
-          //La siguiente variable cambia el numero de productos por fila
-          var numElem = 2;
-  
-          var div = document.createElement("div");
-          div.classList.add("card-deck", "mb-3", "text-center");
-          divListaProdNeg.appendChild(div);
-          for (let index = 0; index < datos.length; index++) {
-            div.innerHTML += `<div class="card mb-4 shadow-sm">
+          window.alert(response.messages[0]);
+        } else {
+          window.alert(response.messages[0]);
+        }
+      });
+  });
+}
+
+//Servicio que actualiza la contraseña del cliente
+if (formEditarCont != null) {
+  formEditarCont,
+    addEventListener("submit", function (e) {
+      e.preventDefault();
+      console.log("click");
+      var datos = new FormData(formEditarCont);
+
+      if (datos.get("password") == "") {
+        window.alert("Es necesario ingresar los datos requeridos");
+      } else if (datos.get("password2") == "") {
+        window.alert("Es necesario ingresar una nueva contraseña");
+      } else if (datos.get("password2") != datos.get("password3")) {
+        window.alert("Las contraseñas no coinciden");
+      } else if (datos.get("pasword") != datos.get("password")) {
+        fetch("http://127.0.0.1:8000/api/cliente", {
+          method: "PUT",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + verToken,
+          },
+          body: JSON.stringify({
+            nombre: window.sessionStorage.getItem("nombre_cli"),
+            direccion: window.sessionStorage.getItem("direccion_cli"),
+            telefono: window.sessionStorage.getItem("telefono_cli"),
+            correo: window.sessionStorage.getItem("correo_cli"),
+            password: datos.get("password2"),
+          }),
+        })
+          .then((response) => response.json())
+          .then((response) => {
+            console.log(response);
+            console.log(response.data);
+            if (response.success) {
+              window.alert(response.messages[0]);
+            } else {
+              window.alert(response.messages[0]);
+            }
+          });
+      } else if (datos.get("password") == datos.get("password2")) {
+        window.alert("La nueva contraseña no puede ser igual a la anterior");
+      }
+    });
+}
+
+if (divListaProdNeg != null) {
+  var datos = null;
+  fetch("http://127.0.0.1:8000/api/publicacion", {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + verToken,
+    },
+  })
+    .then((response) => response.json())
+    .then((response) => {
+      //console.log(response)
+      //console.log(response.data)
+      if (response.success) {
+        datos = response.data;
+        const host = "http://127.0.0.1:8000";
+        //La siguiente variable cambia el numero de productos por fila
+        var numElem = 2;
+
+        var div = document.createElement("div");
+        div.classList.add("card-deck", "mb-3", "text-center");
+        divListaProdNeg.appendChild(div);
+        for (let index = 0; index < datos.length; index++) {
+          div.innerHTML += `<div class="card mb-4 shadow-sm">
                       <div class="card-header">
                           <h4 class="my-0 font-weight-bold">${
                             datos[index].titulo
@@ -161,16 +209,16 @@ if (divListaProdNeg != null) {
                           }">
                       </div>
                   </div>`;
-            //Agrega otro div (fila) para los productos
-            if (index != 0 && index % numElem == 0) {
-              //console.log(index)
-              div = document.createElement("div");
-              div.classList.add("card-deck", "mb-3", "text-center");
-              divListaProdNeg.appendChild(div);
-            }
+          //Agrega otro div (fila) para los productos
+          if (index != 0 && index % numElem == 0) {
+            //console.log(index)
+            div = document.createElement("div");
+            div.classList.add("card-deck", "mb-3", "text-center");
+            divListaProdNeg.appendChild(div);
           }
-  
-          /*var btnsDelete = document.getElementsByClassName("btn-danger");
+        }
+
+        /*var btnsDelete = document.getElementsByClassName("btn-danger");
           for (d of btnsDelete) {
             d.addEventListener("click", function () {
               var id = this.getAttribute("data-id");
@@ -203,30 +251,26 @@ if (divListaProdNeg != null) {
               window.location.href = "editarOfertaNegocio.html";
             });
           }*/
-        } else {
-          window.alert(response.messages[0]);
-        }
-      });
-  }
-  
-
-
-addEventListener('DOMContentLoaded', () =>{
-    const btn_menu=document.querySelector('.btn_menu')
-    if(btn_menu){
-        btn_menu.addEventListener('click',()=>{
-            const menu_items = document.querySelector ('.menu_items')
-            menu_items.classList.toggle('show')
-        })
-    }
+      } else {
+        window.alert(response.messages[0]);
+      }
+    });
 }
 
-)
+addEventListener("DOMContentLoaded", () => {
+  const btn_menu = document.querySelector(".btn_menu");
+  if (btn_menu) {
+    btn_menu.addEventListener("click", () => {
+      const menu_items = document.querySelector(".menu_items");
+      menu_items.classList.toggle("show");
+    });
+  }
+});
 
-logout.addEventListener('click', () => {
-    window.sessionStorage.removeItem('access_token');
-    window.sessionStorage.removeItem('tipo_sesion');
-    window.location.href = 'inicioSesion.html';
-})
+logout.addEventListener("click", () => {
+  window.sessionStorage.removeItem("access_token");
+  window.sessionStorage.removeItem("tipo_sesion");
+  window.location.href = "inicioSesion.html";
+});
 
-console.log(window.sessionStorage.getItem('access_token'));
+console.log(window.sessionStorage.getItem("access_token"));

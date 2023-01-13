@@ -1,79 +1,82 @@
 <!--formulario que puede editar el usuario tipo negocio (restaurante, fonda, etc)
     para modificar sus datos-->
 
-    <!DOCTYPE html>
-    <html lang="en">
-    
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport"
-            content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, shrink-to-fit=no">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-            integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="../CSS/estilosBarra1.css">
-        <link rel="stylesheet" href="../CSS/editarPerfil.css">
-        <link rel="icon" type="image/x-icon" href="../IMG/logo.png">
-        <script src="../JS/barraNegocio.js" defer> </script>
-    </head>
-    
-    <body>
-        <!--Menu-->
-        <nav class="menu">
-            <label class="logo">Green Food</label>
-            <ul class="menu_items">
-    
-                <!--Inicio-->
-                <li><a href="catalogoNegocio.html"><i class="fa fa-home" aria-hidden="true"></i></a></li>
-                <!--Editar perfil -->
-                <li><a href="datosNegocio.html"><i class="fa fa-user" aria-hidden="true"></i></a></li>
-                <!--Carrito de compras-->
-                <li><a href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a></li>
-                <!--Salir-->
-                <li><a href="#"><i class="fa fa-sign-out" aria-hidden="true" id="logout"></i></a></li>
-            </ul>
-    
-            <sapn class="btn_menu">
-                <i class="fa fa-bars"></i>
-            </sapn>
-        </nav>
-        <!--Fin menu-->
-        
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../CSS/estilosBarra1.css">
+    <link rel="stylesheet" href="../CSS/editarPerfil.css">
+    <link rel="icon" type="image/x-icon" href="../IMG/logo.png">
+    <script src="../JS/barraNegocio.js" defer> </script>
+</head>
+
+<body>
+    <!--Menu-->
+    <nav class="menu">
+        <label class="logo">Green Food</label>
+        <ul class="menu_items">
+
+            <!--Inicio-->
+            <li><a href="catalogoNegocio.html"><i class="fa fa-home" aria-hidden="true"></i></a></li>
+            <!--Editar perfil -->
+            <li><a href="datosNegocio.html"><i class="fa fa-user" aria-hidden="true"></i></a></li>
+            <!--Carrito de compras-->
+            <li><a href="ofertaNegocio.html"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a></li>
+            <!--Salir-->
+            <li><a href="#"><i class="fa fa-sign-out" aria-hidden="true" id="logout"></i></a></li>
+        </ul>
+
+        <sapn class="btn_menu">
+            <i class="fa fa-bars"></i>
+        </sapn>
+    </nav>
+    <!--Fin menu-->
+
     <!--Cambiar contraseña -->
     <br><br>
-    <div class="container" id="lista-productos">
-    <form id="formularioEditNeg" class="formulario" method="post">
-    
-                <div class="card mb-4 shadow-sm">
+    <div class="container">
+        <form id="formularioEditNegCont" class="formulario" method="post">
+
+            <div class="card mb-4 shadow-sm">
                 <div class="card-header">
                     <center>
-                    <label>
-                        <h2>C A M B I A R &nbsp C O N T R A S E Ñ A</h2>
-                    </label>
+                        <label>
+                            <h2>C A M B I A R<br>C O N T R A S E Ñ A</h2>
+                        </label>
                     </center>
                 </div>
             </div>
-    
-       <div class="card-body">
-            <label for="nombre">Contraseña Actual:</label>
-            <input type="text" name="nombre" id="nombre">
-            
-            <label for="telefono">Contraseña Nueva:</label>
-            <input type="text" name="telefono" id="telefono">
 
-            <label for="telefono">Repetir Contraseña Nueva:</label>
-            <input type="text" name="telefono" id="telefono">
-            <br>
-            <br>
-            <br>
-            <a class="botonGuardar" href="#">Guardar</a>
-            <a class="botonCancelar" href="datosNegocio.html">Cancelar</a>
-        </div>
-    </form>
+            <div class="card-body">
+                <label for="Contraseña">Contraseña Actual:</label>
+                <input type="password" name="password" id="password" maxlength="20">
+                <br>
+                <label label for="Contraseña Nueva">Contraseña Nueva:</label>
+                <input type="password" name="password2" id="password2" maxlength="20">
+                <br>
+                <label for="Repetir Contraseña Nueva">Repetir Contraseña Nueva:</label>
+                <input type="password" name="password3" id="password3" maxlength="20">
+                <br>
+                <br>
+                <br>
+                <center>
+                    <!--<a class="botonGuardar" href="#">Guardar</a>-->
+                    <input type="submit" class="botonGuardar" value="Guardar">
+                    <a class="botonCancelar" href="datosNegocio.html">Cancelar</a>
+                </center>
+            </div>
+        </form>
     </div>
 
 
-    </body>
+</body>
 
-    </html>
+</html>
