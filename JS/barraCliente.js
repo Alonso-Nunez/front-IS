@@ -7,7 +7,6 @@ var formEditarCliente = document.getElementById("formularioEditC");
 var formEditarCont = document.getElementById("formularioEditClienteCont");
 
 var divListaProdNeg = document.getElementById("lista-productos");
-console.log(divListaProdNeg);
 
 if (verToken == null && tiposesion == null) {
   window.location.href = "inicioSesion.html";
@@ -77,7 +76,6 @@ if (formEditarCliente != null) {
   //Servicio que actualiza la información del cliente
   formEditarCliente.addEventListener("submit", function (e) {
     e.preventDefault();
-    console.log("click");
 
     var datos = new FormData(formEditarCliente);
     fetch("http://127.0.0.1:8000/api/cliente", {
@@ -96,8 +94,6 @@ if (formEditarCliente != null) {
     })
       .then((response) => response.json())
       .then((response) => {
-        console.log(response);
-        console.log(response.data);
         if (response.success) {
           window.alert(response.messages[0]);
         } else {
@@ -112,7 +108,6 @@ if (formEditarCont != null) {
   formEditarCont,
     addEventListener("submit", function (e) {
       e.preventDefault();
-      console.log("click");
       var datos = new FormData(formEditarCont);
 
       if (datos.get("password") == "") {
@@ -139,8 +134,6 @@ if (formEditarCont != null) {
         })
           .then((response) => response.json())
           .then((response) => {
-            console.log(response);
-            console.log(response.data);
             if (response.success) {
               window.alert(response.messages[0]);
             } else {
@@ -165,8 +158,6 @@ if (divListaProdNeg != null) {
   })
     .then((response) => response.json())
     .then((response) => {
-      //console.log(response)
-      //console.log(response.data)
       if (response.success) {
         datos = response.data;
         const host = "http://127.0.0.1:8000";
@@ -195,62 +186,87 @@ if (divListaProdNeg != null) {
                               <li></li>
                               <li>Negocio: <b>${datos[index].negocio}</b></li>
                               <li>${datos[index].nombre}</li>
-                              <li>${datos[index].descripcion}</li>
-                              <li>Cantidad Disponible: ${
+                              <li>Cantidad disponible: ${
                                 datos[index].disponibilidad
                               } </li>
                               <li>Promocion: ${datos[index].promocion}</li>
                           </ul>
-                          <input type="submit" class="btn btn-success" value="Mas información" data-id="${
-                            datos[index].id
+                          <input type="submit" class="btn btn-success" value="Mas información" data-idx="${index}"><br>
+                          <input type="number" value="0" id="quantity" name="quantity" min="1" max="${
+                            datos[index].disponibilidad
                           }">
-                          <input type="submit" class="btn btn-danger" value="Reservar" data-id="${
-                            datos[index].id
-                          }">
+                          <input type="submit" class="btn btn-danger" value="Reservar" data-idP="${datos[index].id}" data-idN="${datos[index].negocio_id}">
                       </div>
                   </div>`;
           //Agrega otro div (fila) para los productos
           if (index != 0 && index % numElem == 0) {
-            //console.log(index)
             div = document.createElement("div");
             div.classList.add("card-deck", "mb-3", "text-center");
             divListaProdNeg.appendChild(div);
           }
         }
-
-        /*var btnsDelete = document.getElementsByClassName("btn-danger");
-          for (d of btnsDelete) {
+  
+          var btnsReservar = document.getElementsByClassName("btn-danger");
+          for (d of btnsReservar) {
             d.addEventListener("click", function () {
-              var id = this.getAttribute("data-id");
-              fetch("http://127.0.0.1:8000/api/publicacion/" + id, {
-                method: "DELETE",
-                headers: {
-                  Accept: "application/json",
-                  "Content-Type": "application/json",
-                  Authorization: "Bearer " + verToken,
-                },
-              })
+              var idP = this.getAttribute("data-idP");
+              var idN = this.getAttribute("data-idN");
+              var parent = this.parentElement
+              var cantidad = parent.childNodes[10].value;
+
+              if(cantidad == 0){
+                window.alert('¡Agrega una cantidad a tu pedido!');
+              } else {
+                var datos =  new FormData();
+                datos.append('publicacion_id',idP);
+                datos.append('negocio_id',idN);
+                datos.append('cantidad',cantidad);
+                fetch("http://127.0.0.1:8000/api/pedido", {
+                  method: "POST",
+                  headers: {
+                    Authorization: "Bearer " + verToken,
+                  },
+                  body: datos
+                })
                 .then((response) => response.json())
                 .then((response) => {
-                  //console.log(response)
                   if (response.success) {
                     window.alert(response.messages[0]);
-                    location.reload();
                   } else {
                     window.alert(response.messages[0]);
                   }
                 });
+              }
+
+              /**/
             });
           }
   
-          var btnsEdit = document.getElementsByClassName("btn-success");
-          for (e of btnsEdit) {
+          var btnsInfo = document.getElementsByClassName("btn-success");
+          for (e of btnsInfo) {
             e.addEventListener("click", function () {
-              var idP = this.getAttribute("data-id");
-              window.sessionStorage.setItem("publicacion_id", idP);
-              window.location.href = "editarOfertaNegocio.html";
+              var idx = this.getAttribute("data-idx");
+              var data = datos[idx]
+              var parent = this.parentElement
+              var list = parent.childNodes[5]
+              if(this.value == 'Mas información') {
+                list.innerHTML += `<li>Descripcion: ${data.descripcion}</li>
+                              <li>Direccion: ${data.direccion}</li>
+                              <li>Horario: ${data.horario}</li>`;
+                this.value = 'Menos información';
+              } else if(this.value == 'Menos información') {
+                list.innerHTML = `<li></li>
+                  <li>Negocio: <b>${data.negocio}</b></li>
+                  <li>${data.nombre}</li>
+                  <li>Cantidad disponible: ${
+                    data.disponibilidad
+                  } </li>
+                  <li>Promocion: ${data.promocion}</li>`;
+                this.value = 'Mas información';
+              }
+              
             });
-          }*/
+          }
       } else {
         window.alert(response.messages[0]);
       }
@@ -273,4 +289,3 @@ logout.addEventListener("click", () => {
   window.location.href = "inicioSesion.html";
 });
 
-console.log(window.sessionStorage.getItem("access_token"));
